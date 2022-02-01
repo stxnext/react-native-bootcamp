@@ -1,14 +1,14 @@
-import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { all, put, takeLatest, call } from 'redux-saga/effects';
 
 import { signIn, signUp, singOut, getCurrentUser } from 'app/services/firebase';
+import { FireBaseError, FireBaseUser } from 'app/types/firebase';
 
 import * as authActions from '../actions/auth';
 import { SignInAction, SignUpAction } from '../actions/auth';
 
 export function* initializeAuthSaga() {
   try {
-    const user: FirebaseAuthTypes.User = yield call(getCurrentUser);
+    const user: FireBaseUser = yield call(getCurrentUser);
     yield put(user ? authActions.initializeWithUser(user) : authActions.initializeWithOutUser());
   } catch (error) {
     // handle error
@@ -18,20 +18,20 @@ export function* initializeAuthSaga() {
 export function* signInSaga(action: SignInAction) {
   try {
     const { username, password } = action.payload;
-    const user: FirebaseAuthTypes.User = yield call(signIn, username, password);
+    const user: FireBaseUser = yield call(signIn, username, password);
     yield put(authActions.signInSuccess(user));
   } catch (error) {
-    yield put(authActions.signInFailure(error as Error));
+    yield put(authActions.signInFailure(error as FireBaseError));
   }
 }
 
 export function* signUpSaga(action: SignUpAction) {
   try {
     const { username, password } = action.payload;
-    const user: FirebaseAuthTypes.User = yield call(signUp, username, password);
+    const user: FireBaseUser = yield call(signUp, username, password);
     yield put(authActions.signUpSuccess(user));
   } catch (error) {
-    yield put(authActions.signUpFailure(error as Error));
+    yield put(authActions.signUpFailure(error as FireBaseError));
   }
 }
 

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { View, Text, Button, Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { errorCode } from 'app/services';
 import { selectors, actions } from 'app/store';
 
 import * as Types from './types';
@@ -17,7 +18,7 @@ export const RootStackScreen: React.FC = () => {
 
   useEffect(() => {
     if (error) {
-      Alert.alert('Wystąpił bład', error.message);
+      Alert.alert('Wystąpił bład', errorCode(error));
     }
   });
   const dispatch = useDispatch();

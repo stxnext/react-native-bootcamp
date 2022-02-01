@@ -1,13 +1,14 @@
-import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { createReducer } from '@reduxjs/toolkit';
+
+import { FireBaseError, FireBaseUser } from 'app/types/firebase';
 
 import * as authActions from '../actions/auth';
 
 export interface AuthState {
   initialized: boolean;
   isLoggedIn: boolean;
-  user: FirebaseAuthTypes.User | null;
-  error: Error | null;
+  user: FireBaseUser | null;
+  error: FireBaseError | null;
 }
 
 export const initialState: AuthState = {
