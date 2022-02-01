@@ -1,3 +1,3 @@
-import { settingsReducer, SettingsState } from './settings';
+import { authReducer, AuthState } from './auth';
 
-export { settingsReducer, SettingsState };
+export { authReducer, AuthState };

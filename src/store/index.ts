@@ -1,18 +1,28 @@
 import { combineReducers, configureStore, Middleware } from '@reduxjs/toolkit';
 import createDebugger from 'redux-flipper';
+import createSagaMiddleware from 'redux-saga';
 
 import * as actions from './actions';
-import { settingsReducer } from './reducers';
+import { authReducer } from './reducers';
+import rootSaga from './sagas';
 import * as selectors from './selectors';
 
-const middlewares: Middleware[] = [];
+const sagaMiddleware = createSagaMiddleware({
+  onError: (error: Error) => {
+    if (__DEV__) {
+      console.warn(error);
+    }
+  },
+});
+
+const middlewares: Middleware[] = [sagaMiddleware];
 
 if (__DEV__) {
   middlewares.push(createDebugger());
 }
 
 const rootReducer = combineReducers({
-  settings: settingsReducer,
+  auth: authReducer,
 });
 
 const store = configureStore({
@@ -22,5 +32,7 @@ const store = configureStore({
 });
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
+
+sagaMiddleware.run(rootSaga);
 
 export { store, actions, selectors };
