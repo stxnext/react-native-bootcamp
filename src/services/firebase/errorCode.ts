@@ -2,6 +2,16 @@ import { FireBaseError } from 'app/types/firebase';
 
 const UndefinedError = 'Undefined Error';
 
+export const EmptyInputError: FireBaseError = {
+  code: 'auth/empty-input',
+  message: 'Email and password must be provided!',
+  namespace: '',
+  nativeErrorCode: '',
+  nativeErrorMessage: '',
+  name: '',
+  userInfo: { authCredential: null },
+};
+
 const ErrorCode = [
   { code: 'auth/invalid-email', message: 'The email address is not valid' },
   { code: 'auth/user-disabled', message: 'User corresponding to the given email has been disabled' },
@@ -36,8 +46,14 @@ const ErrorCode = [
     code: 'auth/email-already-in-use',
     message: 'There already exists an account with the given email address',
   },
+  {
+    code: 'auth/empty-input',
+    message: 'Email and password must be provided!',
+  },
 ];
 
-export const errorCode: (error: FireBaseError) => string | undefined = (error: FireBaseError) => {
-  return ErrorCode.find((entry) => entry.code === error.code)?.message || UndefinedError;
+export const errorCode: (error: FireBaseError | null) => string | undefined = (
+  error: FireBaseError | null,
+) => {
+  return ErrorCode.find((entry) => entry.code === error?.code)?.message || UndefinedError;
 };

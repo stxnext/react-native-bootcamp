@@ -71,6 +71,24 @@ export const signUpFailure = createAction('auth/signUp/failure', (error: FireBas
   error,
 }));
 
+export const removeError = createAction('auth/error/remove', () => ({
+  payload: {},
+  meta: {
+    request: {
+      id: Types.RequestID.ERROR,
+    },
+  },
+}));
+
+export const setLoading = createAction('auth/loading/set', () => ({
+  payload: {},
+  meta: {
+    request: {
+      id: Types.RequestID.LOADING,
+    },
+  },
+}));
+
 export const signOut = createAction('auth/signOut');
 
 export type SignUpAction = ReturnType<typeof signUp>;

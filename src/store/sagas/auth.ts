@@ -1,6 +1,7 @@
 import { all, put, takeLatest, call } from 'redux-saga/effects';
 
-import { signIn, signUp, singOut, getCurrentUser } from 'app/services/firebase';
+import { isEmpty } from 'app/lib';
+import { signIn, signUp, singOut, getCurrentUser, EmptyInputError } from 'app/services/firebase';
 import { FireBaseError, FireBaseUser } from 'app/types/firebase';
 
 import * as authActions from '../actions/auth';
@@ -14,12 +15,16 @@ export function* initializeAuthSaga() {
     // handle error
   }
 }
-
 export function* signInSaga(action: SignInAction) {
   try {
+    yield put(authActions.setLoading());
     const { username, password } = action.payload;
-    const user: FireBaseUser = yield call(signIn, username, password);
-    yield put(authActions.signInSuccess(user));
+    if (!isEmpty(username) && !isEmpty(password)) {
+      const user: FireBaseUser = yield call(signIn, username, password);
+      yield put(authActions.signInSuccess(user));
+    } else {
+      yield put(authActions.signInFailure(EmptyInputError));
+    }
   } catch (error) {
     yield put(authActions.signInFailure(error as FireBaseError));
   }
@@ -27,9 +32,14 @@ export function* signInSaga(action: SignInAction) {
 
 export function* signUpSaga(action: SignUpAction) {
   try {
+    yield put(authActions.setLoading());
     const { username, password } = action.payload;
-    const user: FireBaseUser = yield call(signUp, username, password);
-    yield put(authActions.signUpSuccess(user));
+    if (!isEmpty(username) && !isEmpty(password)) {
+      const user: FireBaseUser = yield call(signUp, username, password);
+      yield put(authActions.signUpSuccess(user));
+    } else {
+      yield put(authActions.signUpFailure(EmptyInputError));
+    }
   } catch (error) {
     yield put(authActions.signUpFailure(error as FireBaseError));
   }

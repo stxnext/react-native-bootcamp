@@ -3,4 +3,6 @@ export enum RequestID {
   INITIALIZE_WITH_USER = 'INITIALIZE_WITH_USER',
   SIGN_IN = 'SIGN_IN',
   SIGN_UP = 'SIGN_UP',
+  ERROR = 'ERROR',
+  LOADING = 'LOADING',
 }

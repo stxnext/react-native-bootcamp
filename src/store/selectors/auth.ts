@@ -1,7 +1,7 @@
 import { RootState } from 'app/store';
 
-export function isAuthInitialized(state: RootState) {
-  return state.auth.initialized;
+export function isLoading(state: RootState) {
+  return state.auth.isLoading;
 }
 
 export function isLoggedIn(state: RootState) {

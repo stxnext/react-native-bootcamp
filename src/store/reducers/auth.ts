@@ -5,14 +5,14 @@ import { FireBaseError, FireBaseUser } from 'app/types/firebase';
 import * as authActions from '../actions/auth';
 
 export interface AuthState {
-  initialized: boolean;
+  isLoading: boolean;
   isLoggedIn: boolean;
   user: FireBaseUser | null;
   error: FireBaseError | null;
 }
 
 export const initialState: AuthState = {
-  initialized: false,
+  isLoading: true,
   isLoggedIn: false,
   user: null,
   error: null,
@@ -21,33 +21,37 @@ export const initialState: AuthState = {
 export const authReducer = createReducer(initialState, (builder) => {
   builder.addCase(authActions.initializeWithUser, (state, action) => {
     state.user = action.payload;
-    state.initialized = true;
+    state.isLoading = false;
     state.isLoggedIn = true;
     state.error = null;
   });
 
   builder.addCase(authActions.initializeWithOutUser, (state) => {
-    state.initialized = true;
+    state.isLoading = false;
     state.error = null;
   });
 
   builder.addCase(authActions.signInSuccess, (state, action) => {
+    state.isLoading = false;
     state.user = action.payload;
     state.isLoggedIn = true;
     state.error = null;
   });
 
   builder.addCase(authActions.signInFailure, (state, action) => {
+    state.isLoading = false;
     state.error = action.error;
   });
 
   builder.addCase(authActions.signUpSuccess, (state, action) => {
-    state.user = action.payload;
     state.isLoggedIn = true;
+    state.user = action.payload;
+    state.isLoading = false;
     state.error = null;
   });
 
   builder.addCase(authActions.signUpFailure, (state, action) => {
+    state.isLoading = false;
     state.error = action.error;
   });
 
@@ -55,5 +59,12 @@ export const authReducer = createReducer(initialState, (builder) => {
     state.isLoggedIn = false;
     state.user = initialState.user;
     state.error = null;
+  });
+
+  builder.addCase(authActions.removeError, (state) => {
+    state.error = null;
+  });
+  builder.addCase(authActions.setLoading, (state) => {
+    state.isLoading = true;
   });
 });
