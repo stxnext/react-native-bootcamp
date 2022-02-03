@@ -15,6 +15,19 @@ export const initializeWithUser = createAction('auth/initialize/user', (user: Fi
   },
 }));
 
+export const updateUser = createAction('auth/user/request');
+
+export const updateUserSuccess = createAction('auth/user/success', (user: FireBaseUser) => ({
+  payload: user,
+  meta: {
+    request: {
+      id: Types.RequestID.USER_UPDATE,
+    },
+  },
+}));
+
+export const updateUserFailure = createAction('auth/user/failure');
+
 export const signIn = createAction('auth/signIn/request', (username: string, password: string) => ({
   payload: { username, password },
   meta: {
@@ -71,26 +84,11 @@ export const signUpFailure = createAction('auth/signUp/failure', (error: FireBas
   error,
 }));
 
-export const removeError = createAction('auth/error/remove', () => ({
-  payload: {},
-  meta: {
-    request: {
-      id: Types.RequestID.ERROR,
-    },
-  },
-}));
-
-export const setLoading = createAction('auth/loading/set', () => ({
-  payload: {},
-  meta: {
-    request: {
-      id: Types.RequestID.LOADING,
-    },
-  },
-}));
+export const removeError = createAction('auth/error/remove');
 
 export const signOut = createAction('auth/signOut');
 
+export type UpdateUserAction = ReturnType<typeof updateUser>;
 export type SignUpAction = ReturnType<typeof signUp>;
 export type SignInAction = ReturnType<typeof signIn>;
 export type SignOutAction = ReturnType<typeof signOut>;

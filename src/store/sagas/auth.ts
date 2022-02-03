@@ -1,7 +1,16 @@
 import { all, put, takeLatest, call } from 'redux-saga/effects';
 
 import { isEmpty } from 'app/lib';
-import { signIn, signUp, singOut, getCurrentUser, EmptyInputError } from 'app/services/firebase';
+import { openCamera } from 'app/services';
+import {
+  signIn,
+  signUp,
+  singOut,
+  getCurrentUser,
+  EmptyInputError,
+  updateUserPhoto,
+  uploadFile,
+} from 'app/services/firebase';
 import { FireBaseError, FireBaseUser } from 'app/types/firebase';
 
 import * as authActions from '../actions/auth';
@@ -15,9 +24,9 @@ export function* initializeAuthSaga() {
     // handle error
   }
 }
+
 export function* signInSaga(action: SignInAction) {
   try {
-    yield put(authActions.setLoading());
     const { username, password } = action.payload;
     if (!isEmpty(username) && !isEmpty(password)) {
       const user: FireBaseUser = yield call(signIn, username, password);
@@ -32,7 +41,6 @@ export function* signInSaga(action: SignInAction) {
 
 export function* signUpSaga(action: SignUpAction) {
   try {
-    yield put(authActions.setLoading());
     const { username, password } = action.payload;
     if (!isEmpty(username) && !isEmpty(password)) {
       const user: FireBaseUser = yield call(signUp, username, password);
@@ -48,15 +56,28 @@ export function* signUpSaga(action: SignUpAction) {
 export function* signOutSaga() {
   try {
     yield call(singOut);
-    yield put(authActions.signOut);
+    yield put(authActions.signOut());
   } catch (error) {
     // handle error
+  }
+}
+
+export function* updateUser() {
+  try {
+    const imgUri: string = yield call(openCamera);
+    const uri: string = yield call(uploadFile, imgUri);
+    yield call(updateUserPhoto, uri);
+    const user: FireBaseUser = yield call(getCurrentUser);
+    yield put(authActions.updateUserSuccess(user));
+  } catch (error) {
+    yield put(authActions.updateUserFailure());
   }
 }
 
 export function* watchAuth() {
   yield all([
     takeLatest(authActions.initializeAuth, initializeAuthSaga),
+    takeLatest(authActions.updateUser, updateUser),
     takeLatest(authActions.signIn, signInSaga),
     takeLatest(authActions.signUp, signUpSaga),
     takeLatest(authActions.signOut, signOutSaga),

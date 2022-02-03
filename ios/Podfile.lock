@@ -711,6 +711,8 @@ PODS:
     - glog
   - react-native-flipper (0.131.1):
     - React-Core
+  - react-native-image-picker (4.7.3):
+    - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
   - React-perflogger (0.66.4)
@@ -793,7 +795,9 @@ PODS:
     - Firebase/Storage (= 8.11.0)
     - React-Core
     - RNFBApp
-  - RNReanimated (2.3.1):
+  - RNGestureHandler (2.1.1):
+    - React-Core
+  - RNReanimated (2.2.4):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -819,6 +823,7 @@ PODS:
     - React-RCTNetwork
     - React-RCTSettings
     - React-RCTText
+    - React-RCTVibration
     - ReactCommon/turbomodule/core
     - Yoga
   - RNScreens (3.10.2):
@@ -870,6 +875,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-flipper (from `../node_modules/react-native-flipper`)
+  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -887,6 +893,7 @@ DEPENDENCIES:
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -961,6 +968,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-flipper:
     :path: "../node_modules/react-native-flipper"
+  react-native-image-picker:
+    :path: "../node_modules/react-native-image-picker"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
@@ -995,6 +1004,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/firestore"
   RNFBStorage:
     :path: "../node_modules/@react-native-firebase/storage"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -1050,6 +1061,7 @@ SPEC CHECKSUMS:
   React-jsinspector: d0374f7509d407d2264168b6d0fad0b54e300b85
   React-logger: 933f80c97c633ee8965d609876848148e3fef438
   react-native-flipper: 8d0ada062fbc2c7460cc0d343aded6fc3f9c90dc
+  react-native-image-picker: 4e6008ad8c2321622affa2c85432a5ebd02d480c
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-perflogger: 93075d8931c32cd1fce8a98c15d2d5ccc4d891bd
   React-RCTActionSheet: 7d3041e6761b4f3044a37079ddcb156575fb6d89
@@ -1067,7 +1079,8 @@ SPEC CHECKSUMS:
   RNFBAuth: 7eb50d60c82b4a59018b0c7a1d4afdd1250eff74
   RNFBFirestore: 431b62b5751a8131d099cf2d094e16facaea455f
   RNFBStorage: 2725730a381b228385959286894d469b861b5be3
-  RNReanimated: da3860204e5660c0dd66739936732197d359d753
+  RNGestureHandler: e1ad51d31a580755079d5124d3ab66f0fcaa8311
+  RNReanimated: 65583befd5706cc9c86ae9a081786181ced37b93
   RNScreens: d6da2b9e29cf523832c2542f47bf1287318b1868
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a

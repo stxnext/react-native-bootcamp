@@ -31,6 +31,23 @@ export const authReducer = createReducer(initialState, (builder) => {
     state.error = null;
   });
 
+  builder.addCase(authActions.updateUser, (state) => {
+    state.isLoading = true;
+  });
+
+  builder.addCase(authActions.updateUserSuccess, (state, action) => {
+    state.user = action.payload;
+    state.isLoading = false;
+  });
+
+  builder.addCase(authActions.updateUserFailure, (state) => {
+    state.isLoading = false;
+  });
+
+  builder.addCase(authActions.signIn, (state) => {
+    state.isLoading = true;
+  });
+
   builder.addCase(authActions.signInSuccess, (state, action) => {
     state.isLoading = false;
     state.user = action.payload;
@@ -41,6 +58,10 @@ export const authReducer = createReducer(initialState, (builder) => {
   builder.addCase(authActions.signInFailure, (state, action) => {
     state.isLoading = false;
     state.error = action.error;
+  });
+
+  builder.addCase(authActions.signUp, (state) => {
+    state.isLoading = true;
   });
 
   builder.addCase(authActions.signUpSuccess, (state, action) => {
@@ -63,8 +84,5 @@ export const authReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(authActions.removeError, (state) => {
     state.error = null;
-  });
-  builder.addCase(authActions.setLoading, (state) => {
-    state.isLoading = true;
   });
 });

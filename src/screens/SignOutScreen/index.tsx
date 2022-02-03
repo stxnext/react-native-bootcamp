@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { userAvatar } from 'app/assets';
 import { actions, selectors } from 'app/store';
 import * as Types from 'app/types';
 
@@ -22,10 +23,16 @@ export const SignOutScreen: React.FC<Props> = () => {
   const user = useSelector(selectors.getUser);
   const dispatch = useDispatch();
 
+  console.log(user?.photoURL);
   return (
     <View style={styles.container}>
+      <Image
+        source={user?.photoURL ? { uri: user?.photoURL } : userAvatar}
+        style={{ height: 100, width: 100 }}
+      />
       <Text style={styles.text}>{user?.email}</Text>
       <Button title={'SignOut'} onPress={() => dispatch(actions.signOut())} />
+      <Button title={'changePhoto'} onPress={() => dispatch(actions.updateUser())} />
     </View>
   );
 };

@@ -65,18 +65,8 @@ export const SignInScreen: React.FC<Props> = () => {
         onChangeText={onChangePassword}
         secureTextEntry
       />
-      <LogInButton
-        action={() => {
-          dispatch(actions.signIn(email, password));
-        }}
-        title={'SignIn'}
-      />
-      <LogInButton
-        action={() => {
-          dispatch(actions.signUp(email, password));
-        }}
-        title={'SignUp'}
-      />
+      <LogInButton action={() => dispatch(actions.signIn(email, password))} title={'SignIn'} />
+      <LogInButton action={() => dispatch(actions.signUp(email, password))} title={'SignUp'} />
     </View>
   );
 };
