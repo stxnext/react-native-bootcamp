@@ -4,9 +4,9 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { theme } from 'app/theme';
 import { defaultTheme } from 'app/theme/default';
 
-interface Props {
-  action: () => void;
+export interface Props {
   title: string;
+  action: () => void;
 }
 
 const styles = StyleSheet.create({
@@ -24,10 +24,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export const LogInButton: React.FC<Props> = ({ action, title }) => {
-  return (
-    <TouchableOpacity style={styles.button} onPress={action}>
-      <Text style={styles.text}>{title}</Text>
-    </TouchableOpacity>
-  );
-};
+export const UserButton: React.FC<Props> = ({ title, action }) => (
+  <TouchableOpacity style={styles.button} onPress={action}>
+    <Text style={styles.text}>{title}</Text>
+  </TouchableOpacity>
+);

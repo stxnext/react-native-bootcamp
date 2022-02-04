@@ -1,2 +1,2 @@
 export { SignInScreen } from './SignInScreen';
-export { SignOutScreen } from './SignOutScreen';
+export { UserProfileScreen } from './UserProfileScreen';

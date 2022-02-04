@@ -5,11 +5,11 @@ type NoParams = undefined;
 
 export enum Route {
   SignIn = 'SignIn',
-  SingOut = 'SingOut',
+  UserProfile = 'UserProfile',
 }
 
 export type RootStackParams = {
-  [Route.SingOut]: NoParams;
+  [Route.UserProfile]: NoParams;
   [Route.SignIn]: NoParams;
 };
 

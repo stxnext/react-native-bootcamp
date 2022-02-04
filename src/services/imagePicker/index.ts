@@ -1,15 +1,16 @@
-import { CameraOptions, launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
 
-const options: CameraOptions = {
-  mediaType: 'photo',
-};
+import { userImgSize } from 'app/screens/UserProfileScreen/components/UserPhotoPicture';
 
 export const openCamera: () => Promise<string | undefined> = async () => {
-  const result = await launchCamera(options);
-  return result.assets?.shift()?.fileName;
-};
+  const image = await ImagePicker.openPicker({
+    width: userImgSize,
+    height: userImgSize,
+    compressImageQuality: 0.8,
+    cropping: true,
+    cropperCircleOverlay: true,
+    multiple: false,
+  });
 
-export const openImageLibrary: () => Promise<string | undefined> = async () => {
-  const result = await launchImageLibrary(options);
-  return result.assets?.shift()?.fileName;
+  return image.path;
 };
