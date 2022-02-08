@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { ActivityIndicator, Modal, StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { actions, selectors } from 'app/store';
+import { selectors } from 'app/store';
+import { initializeAuth } from 'app/store/thunk';
 import { defaultTheme } from 'app/theme/default';
 
 const styles = StyleSheet.create({
@@ -19,7 +20,7 @@ export const AppGate: React.FC = ({ children }) => {
   const ready = useSelector(selectors.isLoading);
 
   useEffect(() => {
-    dispatch(actions.initializeAuth());
+    dispatch(initializeAuth());
   }, [dispatch]);
 
   return (

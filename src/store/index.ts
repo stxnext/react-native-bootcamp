@@ -1,21 +1,13 @@
 import { combineReducers, configureStore, Middleware } from '@reduxjs/toolkit';
+import { AnyAction } from 'redux';
 import createDebugger from 'redux-flipper';
-import createSagaMiddleware from 'redux-saga';
+import thunk, { ThunkAction } from 'redux-thunk';
 
 import * as actions from './actions';
 import { authReducer } from './reducers';
-import rootSaga from './sagas';
 import * as selectors from './selectors';
 
-const sagaMiddleware = createSagaMiddleware({
-  onError: (error: Error) => {
-    if (__DEV__) {
-      console.warn(error);
-    }
-  },
-});
-
-const middlewares: Middleware[] = [sagaMiddleware];
+const middlewares: Middleware[] = [thunk];
 
 if (__DEV__) {
   middlewares.push(createDebugger());
@@ -32,7 +24,5 @@ const store = configureStore({
 });
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
-
-sagaMiddleware.run(rootSaga);
-
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, AnyAction>;
 export { store, actions, selectors };

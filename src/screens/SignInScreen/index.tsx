@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LogInButton } from 'app/screens/SignInScreen/components/LogInButton/LogInButton';
 import { errorCode } from 'app/services';
 import { actions, selectors } from 'app/store';
+import { signInUser, signUpUser } from 'app/store/thunk';
 import { theme } from 'app/theme';
 import * as Types from 'app/types';
 
@@ -65,8 +66,8 @@ export const SignInScreen: React.FC<Props> = () => {
         onChangeText={onChangePassword}
         secureTextEntry
       />
-      <LogInButton action={() => dispatch(actions.signIn(email, password))} title={'SignIn'} />
-      <LogInButton action={() => dispatch(actions.signUp(email, password))} title={'SignUp'} />
+      <LogInButton action={() => dispatch(signInUser(email, password))} title={'SignIn'} />
+      <LogInButton action={() => dispatch(signUpUser(email, password))} title={'SignUp'} />
     </View>
   );
 };
