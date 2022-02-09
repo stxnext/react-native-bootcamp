@@ -1,14 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { FireBaseError, FireBaseUser } from 'app/types/firebase';
+import { FirebaseError, FirebaseUser } from 'app/types/firebase';
 
 import * as authActions from '../actions/auth';
 
 export interface AuthState {
   isLoading: boolean;
   isLoggedIn: boolean;
-  user: FireBaseUser | null;
-  error: FireBaseError | null;
+  user: FirebaseUser | null;
+  error: FirebaseError | null;
 }
 
 export const initialState: AuthState = {
@@ -26,7 +26,7 @@ export const authReducer = createReducer(initialState, (builder) => {
     state.error = null;
   });
 
-  builder.addCase(authActions.initializeWithOutUser, (state) => {
+  builder.addCase(authActions.initializeWithoutUser, (state) => {
     state.isLoading = false;
     state.error = null;
   });

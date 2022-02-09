@@ -49,11 +49,11 @@ export const SignInScreen: React.FC<Props> = () => {
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder={'email'}
+        placeholder="email"
         value={email}
         onChangeText={onChangeEmail}
-        keyboardType={'email-address'}
-        returnKeyType={'next'}
+        keyboardType="email-address"
+        returnKeyType="next"
         onSubmitEditing={() => {
           passwordInput.current?.focus();
         }}
@@ -61,13 +61,13 @@ export const SignInScreen: React.FC<Props> = () => {
       <TextInput
         ref={passwordInput}
         style={styles.input}
-        placeholder={'password'}
+        placeholder="password"
         value={password}
         onChangeText={onChangePassword}
         secureTextEntry
       />
-      <LogInButton action={() => dispatch(signInUser(email, password))} title={'SignIn'} />
-      <LogInButton action={() => dispatch(signUpUser(email, password))} title={'SignUp'} />
+      <LogInButton action={() => dispatch(signInUser(email, password))} title="SignIn" />
+      <LogInButton action={() => dispatch(signUpUser(email, password))} title="SignUp" />
     </View>
   );
 };

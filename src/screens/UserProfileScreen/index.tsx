@@ -31,8 +31,8 @@ export const UserProfileScreen: React.FC<Props> = () => {
     <View style={styles.container}>
       <UserPhotoPicture imageURL={user?.photoURL} />
       <Text style={styles.text}>{user?.email}</Text>
-      <UserButton title={'changePhoto'} action={() => dispatch(updateUserProfile())} />
-      <UserButton title={'SignOut'} action={() => dispatch(signOutUser())} />
+      <UserButton title="changePhoto" action={() => dispatch(updateUserProfile())} />
+      <UserButton title="SignOut" action={() => dispatch(signOutUser())} />
     </View>
   );
 };

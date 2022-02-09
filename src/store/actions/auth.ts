@@ -1,12 +1,12 @@
 import { createAction } from '@reduxjs/toolkit';
 
 import * as Types from 'app/types';
-import { FireBaseError, FireBaseUser } from 'app/types/firebase';
+import { FirebaseError, FirebaseUser } from 'app/types/firebase';
 
 export const initializeAuth = createAction('auth/initialize/start');
-export const initializeWithOutUser = createAction('auth/initialize/noUser');
+export const initializeWithoutUser = createAction('auth/initialize/noUser');
 
-export const initializeWithUser = createAction('auth/initialize/user', (user: FireBaseUser) => ({
+export const initializeWithUser = createAction('auth/initialize/user', (user: FirebaseUser) => ({
   payload: user,
   meta: {
     request: {
@@ -17,7 +17,7 @@ export const initializeWithUser = createAction('auth/initialize/user', (user: Fi
 
 export const updateUser = createAction('auth/user/request');
 
-export const updateUserSuccess = createAction('auth/user/success', (user: FireBaseUser) => ({
+export const updateUserSuccess = createAction('auth/user/success', (user: FirebaseUser) => ({
   payload: user,
   meta: {
     request: {
@@ -30,7 +30,7 @@ export const updateUserFailure = createAction('auth/user/failure');
 
 export const signIn = createAction('auth/signIn/request');
 
-export const signInSuccess = createAction('auth/signIn/success', (user: FireBaseUser) => ({
+export const signInSuccess = createAction('auth/signIn/success', (user: FirebaseUser) => ({
   payload: user,
   meta: {
     request: {
@@ -39,7 +39,7 @@ export const signInSuccess = createAction('auth/signIn/success', (user: FireBase
   },
 }));
 
-export const signInFailure = createAction('auth/signIn/failure', (error: FireBaseError) => ({
+export const signInFailure = createAction('auth/signIn/failure', (error: FirebaseError) => ({
   payload: error,
   meta: {
     request: {
@@ -51,7 +51,7 @@ export const signInFailure = createAction('auth/signIn/failure', (error: FireBas
 
 export const signUp = createAction('auth/signUp/request');
 
-export const signUpSuccess = createAction('auth/signUp/success', (user: FireBaseUser) => ({
+export const signUpSuccess = createAction('auth/signUp/success', (user: FirebaseUser) => ({
   payload: user,
   meta: {
     request: {
@@ -60,7 +60,7 @@ export const signUpSuccess = createAction('auth/signUp/success', (user: FireBase
   },
 }));
 
-export const signUpFailure = createAction('auth/signUp/failure', (error: FireBaseError) => ({
+export const signUpFailure = createAction('auth/signUp/failure', (error: FirebaseError) => ({
   payload: error,
   meta: {
     request: {

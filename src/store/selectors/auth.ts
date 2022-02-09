@@ -1,17 +1,9 @@
 import { RootState } from 'app/store';
 
-export function isLoading(state: RootState) {
-  return state.auth.isLoading;
-}
+export const isLoading = (state: RootState) => state.auth.isLoading;
 
-export function isLoggedIn(state: RootState) {
-  return state.auth.isLoggedIn;
-}
+export const isLoggedIn = (state: RootState) => state.auth.isLoggedIn;
 
-export function getUser(state: RootState) {
-  return state.auth.user;
-}
+export const getUser = (state: RootState) => state.auth.user;
 
-export function getError(state: RootState) {
-  return state.auth.error;
-}
+export const getError = (state: RootState) => state.auth.error;

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
 export const AppGate: React.FC = ({ children }) => {
   const dispatch = useDispatch();
-  const ready = useSelector(selectors.isLoading);
+  const isLoading = useSelector(selectors.isLoading);
 
   useEffect(() => {
     dispatch(initializeAuth());
@@ -25,7 +25,7 @@ export const AppGate: React.FC = ({ children }) => {
 
   return (
     <>
-      <Modal animationType="fade" transparent visible={ready}>
+      <Modal animationType="fade" transparent visible={isLoading}>
         <View style={styles.modal}>
           <ActivityIndicator size="large" />
         </View>

@@ -13,7 +13,7 @@ export const RootStackScreen: React.FC = () => {
   const isLoggedIn = useSelector(selectors.isLoggedIn);
 
   return (
-    <Stack.Navigator initialRouteName={isLoggedIn ? Types.Route.UserProfile : Types.Route.SignIn}>
+    <Stack.Navigator>
       {isLoggedIn ? (
         <Stack.Screen name={Types.Route.UserProfile} component={UserProfileScreen} />
       ) : (

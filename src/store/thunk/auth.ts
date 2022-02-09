@@ -1,4 +1,3 @@
-import { isEmpty } from 'app/lib';
 import {
   EmptyInputError,
   getCurrentUser,
@@ -11,13 +10,13 @@ import {
 } from 'app/services';
 import { actions, AppDispatch, AppThunk } from 'app/store';
 import * as authActions from 'app/store/actions/auth';
-import { FireBaseError, FireBaseUser } from 'app/types/firebase';
+import { FirebaseError, FirebaseUser } from 'app/types/firebase';
 
 export const initializeAuth = (): AppThunk<Promise<void>> => async (dispatch: AppDispatch) => {
   dispatch(actions.initializeAuth());
   try {
-    const user: FireBaseUser | null = await getCurrentUser();
-    dispatch(user ? authActions.initializeWithUser(user) : authActions.initializeWithOutUser());
+    const user: FirebaseUser | null = await getCurrentUser();
+    dispatch(user ? authActions.initializeWithUser(user) : authActions.initializeWithoutUser());
   } catch (error) {
     // handle error
   }
@@ -28,14 +27,14 @@ export const signInUser =
   async (dispatch: AppDispatch) => {
     dispatch(actions.signIn());
     try {
-      if (!isEmpty(username) && !isEmpty(password)) {
-        const user: FireBaseUser = await signIn(username, password);
+      if (username && password) {
+        const user: FirebaseUser = await signIn(username, password);
         dispatch(authActions.signInSuccess(user));
       } else {
         dispatch(authActions.signInFailure(EmptyInputError));
       }
     } catch (error) {
-      dispatch(authActions.signInFailure(error as FireBaseError));
+      dispatch(authActions.signInFailure(error as FirebaseError));
     }
   };
 
@@ -44,14 +43,14 @@ export const signUpUser =
   async (dispatch: AppDispatch) => {
     dispatch(actions.signUp());
     try {
-      if (!isEmpty(username) && !isEmpty(password)) {
-        const user: FireBaseUser = await signUp(username, password);
+      if (username && password) {
+        const user: FirebaseUser = await signUp(username, password);
         dispatch(authActions.signUpSuccess(user));
       } else {
         dispatch(authActions.signUpFailure(EmptyInputError));
       }
     } catch (error) {
-      dispatch(authActions.signUpFailure(error as FireBaseError));
+      dispatch(authActions.signUpFailure(error as FirebaseError));
     }
   };
 
@@ -71,7 +70,7 @@ export const updateUserProfile = (): AppThunk<Promise<void>> => async (dispatch:
     const imgUri: string = await openImageLibrary();
     const uri: string = await uploadFile(imgUri);
     await updateUserPhoto(uri);
-    const user: FireBaseUser | null = await getCurrentUser();
+    const user: FirebaseUser | null = await getCurrentUser();
     dispatch(user ? authActions.updateUserSuccess(user) : authActions.updateUserFailure());
   } catch (error) {
     dispatch(authActions.updateUserFailure());
