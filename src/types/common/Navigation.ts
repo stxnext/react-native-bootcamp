@@ -3,14 +3,20 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 type NoParams = undefined;
 
+type ChatParams = {
+  id: string;
+};
+
 export enum Route {
   SignIn = 'SignIn',
   UserProfile = 'UserProfile',
+  Chat = 'Chat',
 }
 
 export type RootStackParams = {
   [Route.UserProfile]: NoParams;
   [Route.SignIn]: NoParams;
+  [Route.Chat]: ChatParams;
 };
 
 export type RootStackNavigationProp<R extends keyof RootStackParams> = StackNavigationProp<
