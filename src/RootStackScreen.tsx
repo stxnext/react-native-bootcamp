@@ -16,13 +16,11 @@ export const RootStackScreen: React.FC = () => {
   return (
     <Stack.Navigator>
       {isLoggedIn ? (
-        <Stack.Group>
-          <Stack.Screen
-            name={Types.Route.MainTab}
-            component={MainTabScreen}
-            options={{ headerShown: false }}
-          />
-        </Stack.Group>
+        <Stack.Screen
+          name={Types.Route.MainTab}
+          component={MainTabScreen}
+          options={{ headerShown: false }}
+        />
       ) : (
         <Stack.Screen name={Types.Route.SignIn} component={SignInScreen} />
       )}
