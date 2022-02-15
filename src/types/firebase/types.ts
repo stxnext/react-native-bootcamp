@@ -1,19 +1,17 @@
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
-import FieldValue = FirebaseFirestoreTypes.FieldValue;
+export type FirebaseError = FirebaseAuthTypes.NativeFirebaseAuthError;
 
-export interface FirebaseError extends FirebaseAuthTypes.NativeFirebaseAuthError {}
+export type FirebaseUser = FirebaseAuthTypes.User;
 
-export interface FirebaseUser extends FirebaseAuthTypes.User {}
+export type FirebaseDocument = FirebaseFirestoreTypes.DocumentData;
 
-export interface FirebaseDocument extends FirebaseFirestoreTypes.DocumentData {}
+export type FirebaseDocumentReference = FirebaseFirestoreTypes.DocumentReference;
 
-export interface FirebaseDocumentReference extends FirebaseFirestoreTypes.DocumentReference {}
+export type FirebaseCollectionReference = FirebaseFirestoreTypes.CollectionReference;
 
-export interface FirebaseCollectionReference extends FirebaseFirestoreTypes.CollectionReference {}
-
-export interface FirebaseFieldValue extends FieldValue {}
+export type FirebaseFieldValue = FirebaseFirestoreTypes.FieldValue;
 
 export interface FirebaseMessage {
   text: string;

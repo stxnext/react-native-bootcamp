@@ -1,8 +1,8 @@
-import { FirebaseError } from 'app/types/firebase';
+import * as Types from 'app/types';
 
 const UndefinedError = 'Undefined Error';
 
-export const EmptyInputError: FirebaseError = {
+export const EmptyInputError: Types.FirebaseError = {
   code: 'auth/empty-input',
   message: 'Email and password must be provided!',
   namespace: '',
@@ -52,8 +52,8 @@ const ErrorCode = [
   },
 ];
 
-export const errorCode: (error: FirebaseError | null) => string | undefined = (
-  error: FirebaseError | null,
+export const errorCode: (error: Types.FirebaseError | null) => string | undefined = (
+  error: Types.FirebaseError | null,
 ) => {
   return ErrorCode.find((entry) => entry.code === error?.code)?.message || UndefinedError;
 };

@@ -9,6 +9,12 @@ export interface Props {
   action: () => void;
 }
 
+export const UserButton: React.FC<Props> = ({ title, action }) => (
+  <TouchableOpacity style={styles.button} onPress={action}>
+    <Text style={styles.text}>{title}</Text>
+  </TouchableOpacity>
+);
+
 const styles = StyleSheet.create({
   button: {
     width: 200,
@@ -23,9 +29,3 @@ const styles = StyleSheet.create({
     color: defaultTheme.grayscale09,
   },
 });
-
-export const UserButton: React.FC<Props> = ({ title, action }) => (
-  <TouchableOpacity style={styles.button} onPress={action}>
-    <Text style={styles.text}>{title}</Text>
-  </TouchableOpacity>
-);

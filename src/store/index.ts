@@ -4,7 +4,7 @@ import createDebugger from 'redux-flipper';
 import thunk, { ThunkAction } from 'redux-thunk';
 
 import * as actions from './actions';
-import { authReducer, firestoreReducer } from './reducers';
+import { authReducer, messagesReducer } from './reducers';
 import * as selectors from './selectors';
 
 const middlewares: Middleware[] = [thunk];
@@ -15,7 +15,7 @@ if (__DEV__) {
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  firestore: firestoreReducer,
+  messsages: messagesReducer,
 });
 
 const store = configureStore({

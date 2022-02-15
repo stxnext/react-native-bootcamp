@@ -2,20 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { UserPhoto } from 'app/components';
-import { FirebaseDocument } from 'app/types/firebase';
+import * as Types from 'app/types';
 
 interface Props {
-  item: FirebaseDocument;
+  item: Types.FirebaseDocument;
 }
-
-const styles = StyleSheet.create({
-  listItem: {
-    flex: 1,
-    height: 150,
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-});
 
 export const ChatListItem: React.FC<Props> = ({ item }) => {
   return (
@@ -28,3 +19,12 @@ export const ChatListItem: React.FC<Props> = ({ item }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  listItem: {
+    flex: 1,
+    padding: 5,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+});

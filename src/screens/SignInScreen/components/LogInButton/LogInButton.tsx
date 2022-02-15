@@ -9,6 +9,14 @@ interface Props {
   title: string;
 }
 
+export const LogInButton: React.FC<Props> = ({ action, title }) => {
+  return (
+    <TouchableOpacity style={styles.button} onPress={action}>
+      <Text style={styles.text}>{title}</Text>
+    </TouchableOpacity>
+  );
+};
+
 const styles = StyleSheet.create({
   button: {
     width: 200,
@@ -23,11 +31,3 @@ const styles = StyleSheet.create({
     color: defaultTheme.grayscale09,
   },
 });
-
-export const LogInButton: React.FC<Props> = ({ action, title }) => {
-  return (
-    <TouchableOpacity style={styles.button} onPress={action}>
-      <Text style={styles.text}>{title}</Text>
-    </TouchableOpacity>
-  );
-};

@@ -1,44 +1,44 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, KeyboardAvoidingView, SafeAreaView, Platform } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 
 import { ChatList } from 'app/screens/ChatScreen/components/ChatList';
 import { InputMessage } from 'app/screens/ChatScreen/components/InputMessage';
-import { getFirestoreCollection } from 'app/store/thunk';
+import { getMessagesFromFirestore } from 'app/store/thunk';
 import * as Types from 'app/types';
 
 export type Props = Types.RootStackScreenProps<Types.Route.Chat>;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
 const OS = Platform.OS;
 const keyboardBehavior = OS === 'ios' ? 'padding' : 'height';
-const keyboardVerticalOffset = OS === 'ios' ? 100 : 80;
+const keyboardVerticalOffset = 80;
 
-export const ChatScreen: React.FC<Props> = ({ route }) => {
-  const id = route.params.id;
-
+export const ChatScreen: React.FC<Props> = () => {
   const dispatch = useDispatch();
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {
-    const unsubscribe = dispatch(getFirestoreCollection(id));
+    const unsubscribe = dispatch(getMessagesFromFirestore());
     return () => unsubscribe && unsubscribe();
-  }, [dispatch, id]);
+  }, [dispatch]);
 
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         behavior={keyboardBehavior}
         style={styles.container}
-        keyboardVerticalOffset={keyboardVerticalOffset}
+        keyboardVerticalOffset={keyboardVerticalOffset + insets.bottom}
       >
         <ChatList />
-        <InputMessage id={id} />
+        <InputMessage />
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

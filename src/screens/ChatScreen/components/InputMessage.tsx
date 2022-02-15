@@ -2,32 +2,10 @@ import React, { useRef, useState } from 'react';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 
-import { addMessageToFirestoreCollection } from 'app/store/thunk';
+import { addMessageToFirestore } from 'app/store/thunk';
 import { defaultTheme } from 'app/theme/default';
 
-interface Props {
-  id: string;
-}
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: defaultTheme.grayscale00,
-    margin: 5,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  input: {
-    flex: 1,
-    height: '100%',
-    margin: 5,
-    padding: 5,
-    borderWidth: 1,
-  },
-});
-
-export const InputMessage: React.FC<Props> = ({ id }) => {
+export const InputMessage: React.FC = () => {
   const messageInput = useRef<TextInput | null>(null);
 
   const dispatch = useDispatch();
@@ -36,7 +14,7 @@ export const InputMessage: React.FC<Props> = ({ id }) => {
 
   const onPress = () => {
     if (messageText) {
-      dispatch(addMessageToFirestoreCollection(id, messageText));
+      dispatch(addMessageToFirestore(messageText));
       messageInput.current?.clear();
       setMessageText('');
     }
@@ -55,3 +33,20 @@ export const InputMessage: React.FC<Props> = ({ id }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: defaultTheme.grayscale00,
+    margin: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  input: {
+    flex: 1,
+    height: '100%',
+    margin: 4,
+    padding: 4,
+    borderWidth: 1,
+  },
+});

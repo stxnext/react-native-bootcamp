@@ -1,5 +1,5 @@
 import { authReducer, AuthState } from './auth';
-import { firestoreReducer, FirestoreState } from './firestore';
+import { messagesReducer, MessagesState } from './messages';
 
 export { authReducer, AuthState };
-export { firestoreReducer, FirestoreState };
+export { messagesReducer, MessagesState };

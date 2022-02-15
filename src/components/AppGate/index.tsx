@@ -6,15 +6,6 @@ import { selectors } from 'app/store';
 import { initializeAuth } from 'app/store/thunk';
 import { defaultTheme } from 'app/theme/default';
 
-const styles = StyleSheet.create({
-  modal: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: defaultTheme.transparentGray,
-  },
-});
-
 export const AppGate: React.FC = ({ children }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectors.isLoading);
@@ -34,3 +25,12 @@ export const AppGate: React.FC = ({ children }) => {
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  modal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: defaultTheme.transparentGray,
+  },
+});

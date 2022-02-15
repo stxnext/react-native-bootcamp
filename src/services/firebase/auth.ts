@@ -1,8 +1,11 @@
 import auth from '@react-native-firebase/auth';
 
-import { FirebaseUser } from 'app/types/firebase';
+import * as Types from 'app/types';
 
-export const signIn: (email: string, password: string) => Promise<FirebaseUser> = async (email, password) =>
+export const signIn: (email: string, password: string) => Promise<Types.FirebaseUser> = async (
+  email,
+  password,
+) =>
   auth()
     .signInWithEmailAndPassword(email, password)
     .then((user) => user.user)
@@ -10,7 +13,10 @@ export const signIn: (email: string, password: string) => Promise<FirebaseUser> 
       throw error;
     });
 
-export const signUp: (email: string, password: string) => Promise<FirebaseUser> = async (email, password) =>
+export const signUp: (email: string, password: string) => Promise<Types.FirebaseUser> = async (
+  email,
+  password,
+) =>
   auth()
     .createUserWithEmailAndPassword(email, password)
     .then((user) => user.user)
@@ -20,7 +26,7 @@ export const signUp: (email: string, password: string) => Promise<FirebaseUser> 
 
 export const singOut: () => Promise<void> = async () => await auth().signOut();
 
-export const getCurrentUser: () => FirebaseUser | null = () => auth().currentUser;
+export const getCurrentUser: () => Types.FirebaseUser | null = () => auth().currentUser;
 
 export const updateUserPhoto: (uri: string) => Promise<void> = async (uri) => {
   const userInfo = {
