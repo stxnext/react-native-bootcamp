@@ -5,13 +5,20 @@ type NoParams = undefined;
 
 export enum Route {
   SignIn = 'SignIn',
+  MainTab = 'MainTab',
   UserProfile = 'UserProfile',
   Chat = 'Chat',
 }
 
 export type RootStackParams = {
+  [Route.MainTab]: NoParams;
   [Route.UserProfile]: NoParams;
   [Route.SignIn]: NoParams;
+  [Route.Chat]: NoParams;
+};
+
+export type MainTabParams = {
+  [Route.UserProfile]: NoParams;
   [Route.Chat]: NoParams;
 };
 
