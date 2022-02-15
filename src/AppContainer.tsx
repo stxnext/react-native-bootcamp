@@ -2,7 +2,8 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { RootNavigator } from './RootNavigator';
+import { SignInScreen } from 'app/screens';
+
 import { AppGate } from './components';
 
 const AppContainer = () => {
@@ -10,7 +11,7 @@ const AppContainer = () => {
     <AppGate>
       <SafeAreaProvider>
         <StatusBar backgroundColor="transparent" />
-        <RootNavigator />
+        <SignInScreen />
       </SafeAreaProvider>
     </AppGate>
   );
