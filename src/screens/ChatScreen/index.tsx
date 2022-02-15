@@ -17,11 +17,6 @@ export const ChatScreen: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const insets = useSafeAreaInsets();
 
-  useEffect(() => {
-    const unsubscribe = dispatch(getMessagesFromFirestore());
-    return () => unsubscribe && unsubscribe();
-  }, [dispatch]);
-
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
