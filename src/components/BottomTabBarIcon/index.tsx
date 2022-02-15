@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export interface BottomTabBarIconProps {
+interface BottomTabBarIconProps {
   name: string;
   color: string;
   focused: boolean;
