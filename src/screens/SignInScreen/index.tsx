@@ -38,6 +38,7 @@ export const SignInScreen: React.FC<Props> = () => {
         onChangeText={onChangeEmail}
         keyboardType="email-address"
         returnKeyType="next"
+        autoCapitalize="none"
         onSubmitEditing={() => {
           passwordInput.current?.focus();
         }}
@@ -47,8 +48,9 @@ export const SignInScreen: React.FC<Props> = () => {
         style={styles.input}
         placeholder="password"
         value={password}
-        onChangeText={onChangePassword}
         secureTextEntry
+        autoCapitalize="none"
+        onChangeText={onChangePassword}
       />
       <LogInButton action={() => dispatch(signInUser(email, password))} title="SignIn" />
       <LogInButton action={() => dispatch(signUpUser(email, password))} title="SignUp" />
