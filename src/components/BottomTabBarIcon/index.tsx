@@ -1,5 +1,4 @@
 import React from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export interface BottomTabBarIconProps {
