@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Alert, StyleSheet, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { LogInButton } from 'app/screens/SignInScreen/components/LogInButton/LogInButton';
+import { LogInButton } from 'app/screens/SignInScreen/components';
 import { errorCode } from 'app/services';
 import { actions, selectors } from 'app/store';
 import { signInUser, signUpUser } from 'app/store/thunk';

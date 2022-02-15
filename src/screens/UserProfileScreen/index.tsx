@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { UserPhoto } from 'app/components/UserPhoto';
-import { UserButton } from 'app/screens/UserProfileScreen/components/UserButton';
+import { UserButton } from 'app/screens/UserProfileScreen/components';
 import { selectors } from 'app/store';
 import { signOutUser, updateUserProfile } from 'app/store/thunk';
 import { defaultTheme } from 'app/theme/default';

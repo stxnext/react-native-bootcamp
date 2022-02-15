@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 
-import { ChatListItem } from 'app/screens/ChatScreen/components/ChatListItem';
+import { ChatListItem } from 'app/screens/ChatScreen/components';
 import { selectors } from 'app/store';
 import { defaultTheme } from 'app/theme/default';
 
