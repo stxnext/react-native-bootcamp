@@ -8,6 +8,6 @@ export interface BottomTabBarIconProps {
   size: number;
 }
 
-export const BottomTabBarIcon: React.FC<BottomTabBarIconProps> = ({ focused, color, name, size }) => {
-  return <Icon size={focused ? size + 5 : size} name={name} color={color} />;
-};
+export const BottomTabBarIcon: React.FC<BottomTabBarIconProps> = ({ focused, color, name, size }) => (
+  <Icon size={focused ? size + 5 : size} name={name} color={color} />
+);
