@@ -6,11 +6,13 @@ type NoParams = undefined;
 export enum Route {
   SignIn = 'SignIn',
   UserProfile = 'UserProfile',
+  Chat = 'Chat',
 }
 
 export type RootStackParams = {
   [Route.UserProfile]: NoParams;
   [Route.SignIn]: NoParams;
+  [Route.Chat]: NoParams;
 };
 
 export type RootStackNavigationProp<R extends keyof RootStackParams> = StackNavigationProp<

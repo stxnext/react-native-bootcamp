@@ -1,23 +1,26 @@
 import { createAction } from '@reduxjs/toolkit';
 
+import * as Constants from 'app/config/redux';
 import * as Types from 'app/types';
-import { FirebaseError, FirebaseUser } from 'app/types/firebase';
 
-export const initializeAuth = createAction('auth/initialize/start');
-export const initializeWithoutUser = createAction('auth/initialize/noUser');
+export const initializeAuth = createAction(Constants.AUTH_INITIALIZE_START);
+export const initializeWithoutUser = createAction(Constants.AUTH_INITIALIZE_NO_USER);
 
-export const initializeWithUser = createAction('auth/initialize/user', (user: FirebaseUser) => ({
-  payload: user,
-  meta: {
-    request: {
-      id: Types.RequestID.INITIALIZE_WITH_USER,
+export const initializeWithUser = createAction(
+  Constants.AUTH_INITIALIZE_USER,
+  (user: Types.FirebaseUser) => ({
+    payload: user,
+    meta: {
+      request: {
+        id: Types.RequestID.INITIALIZE_WITH_USER,
+      },
     },
-  },
-}));
+  }),
+);
 
-export const updateUser = createAction('auth/user/request');
+export const updateUser = createAction(Constants.AUTH_USER_REQUEST);
 
-export const updateUserSuccess = createAction('auth/user/success', (user: FirebaseUser) => ({
+export const updateUserSuccess = createAction(Constants.AUTH_USER_SUCCESS, (user: Types.FirebaseUser) => ({
   payload: user,
   meta: {
     request: {
@@ -26,11 +29,11 @@ export const updateUserSuccess = createAction('auth/user/success', (user: Fireba
   },
 }));
 
-export const updateUserFailure = createAction('auth/user/failure');
+export const updateUserFailure = createAction(Constants.AUTH_USER_FAILURE);
 
-export const signIn = createAction('auth/signIn/request');
+export const signIn = createAction(Constants.AUTH_SIGN_IN_REQUEST);
 
-export const signInSuccess = createAction('auth/signIn/success', (user: FirebaseUser) => ({
+export const signInSuccess = createAction(Constants.AUTH_SIGN_IN_SUCCESS, (user: Types.FirebaseUser) => ({
   payload: user,
   meta: {
     request: {
@@ -39,7 +42,7 @@ export const signInSuccess = createAction('auth/signIn/success', (user: Firebase
   },
 }));
 
-export const signInFailure = createAction('auth/signIn/failure', (error: FirebaseError) => ({
+export const signInFailure = createAction(Constants.AUTH_SIGN_IN_FAILURE, (error: Types.FirebaseError) => ({
   payload: error,
   meta: {
     request: {
@@ -49,9 +52,9 @@ export const signInFailure = createAction('auth/signIn/failure', (error: Firebas
   error,
 }));
 
-export const signUp = createAction('auth/signUp/request');
+export const signUp = createAction(Constants.AUTH_SIGN_UP_REQUEST);
 
-export const signUpSuccess = createAction('auth/signUp/success', (user: FirebaseUser) => ({
+export const signUpSuccess = createAction(Constants.AUTH_SIGN_UP_SUCCESS, (user: Types.FirebaseUser) => ({
   payload: user,
   meta: {
     request: {
@@ -60,7 +63,7 @@ export const signUpSuccess = createAction('auth/signUp/success', (user: Firebase
   },
 }));
 
-export const signUpFailure = createAction('auth/signUp/failure', (error: FirebaseError) => ({
+export const signUpFailure = createAction(Constants.AUTH_SIGN_UP_FAILURE, (error: Types.FirebaseError) => ({
   payload: error,
   meta: {
     request: {
@@ -70,6 +73,6 @@ export const signUpFailure = createAction('auth/signUp/failure', (error: Firebas
   error,
 }));
 
-export const removeError = createAction('auth/error/remove');
+export const removeError = createAction(Constants.AUTH_ERROR_REMOVE);
 
-export const signOut = createAction('auth/signOut');
+export const signOut = createAction(Constants.AUTH_SIGN_OUT);

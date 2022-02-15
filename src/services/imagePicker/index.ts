@@ -1,11 +1,11 @@
 import ImagePicker from 'react-native-image-crop-picker';
 
-import { userImgSize } from 'app/screens/UserProfileScreen/components/UserPhotoPicture';
+import { userImageSize } from 'app/components/UserPhoto';
 
 export const openImageLibrary: () => Promise<string> = async () => {
   const image = await ImagePicker.openPicker({
-    width: userImgSize,
-    height: userImgSize,
+    width: userImageSize,
+    height: userImageSize,
     compressImageQuality: 0.8,
     cropping: true,
     cropperCircleOverlay: true,

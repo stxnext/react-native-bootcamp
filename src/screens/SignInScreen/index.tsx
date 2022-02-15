@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Alert, StyleSheet, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { LogInButton } from 'app/screens/SignInScreen/components/LogInButton/LogInButton';
+import { LogInButton } from 'app/screens/SignInScreen/components';
 import { errorCode } from 'app/services';
 import { actions, selectors } from 'app/store';
 import { signInUser, signUpUser } from 'app/store/thunk';
@@ -10,22 +10,6 @@ import { theme } from 'app/theme';
 import * as Types from 'app/types';
 
 export type Props = Types.RootStackScreenProps<Types.Route.SignIn>;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    width: 200,
-    height: 40,
-    margin: 10,
-    padding: 10,
-    borderWidth: 1,
-    color: theme.grayscale09,
-  },
-});
 
 export const SignInScreen: React.FC<Props> = () => {
   const passwordInput = useRef<TextInput | null>(null);
@@ -71,3 +55,19 @@ export const SignInScreen: React.FC<Props> = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  input: {
+    width: 200,
+    height: 40,
+    margin: 10,
+    padding: 10,
+    borderWidth: 1,
+    color: theme.grayscale09,
+  },
+});

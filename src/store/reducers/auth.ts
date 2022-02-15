@@ -1,14 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { FirebaseError, FirebaseUser } from 'app/types/firebase';
+import * as Types from 'app/types';
 
 import * as authActions from '../actions/auth';
 
 export interface AuthState {
   isLoading: boolean;
   isLoggedIn: boolean;
-  user: FirebaseUser | null;
-  error: FirebaseError | null;
+  user: Types.FirebaseUser | null;
+  error: Types.FirebaseError | null;
 }
 
 export const initialState: AuthState = {
