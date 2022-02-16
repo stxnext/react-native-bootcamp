@@ -11,7 +11,7 @@ import * as Types from 'app/types';
 
 export type Props = Types.RootStackScreenProps<Types.Route.SignIn>;
 
-export const UserProfileScreen: React.FC<Props> = ({ navigation }) => {
+export const UserProfileScreen: React.FC<Props> = () => {
   const user = useSelector(selectors.getUser);
   const dispatch = useDispatch();
 
@@ -21,7 +21,6 @@ export const UserProfileScreen: React.FC<Props> = ({ navigation }) => {
       <Text style={styles.text}>{user?.email}</Text>
       <UserButton title="changePhoto" action={() => dispatch(updateUserProfile())} />
       <UserButton title="SignOut" action={() => dispatch(signOutUser())} />
-      <UserButton title="Chat" action={() => navigation.navigate(Types.Route.Chat)} />
     </View>
   );
 };
