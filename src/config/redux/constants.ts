@@ -13,3 +13,4 @@ export const AUTH_SIGN_UP_SUCCESS = 'auth/signUp/success';
 export const AUTH_SIGN_UP_FAILURE = 'auth/signUp/failure';
 export const AUTH_ERROR_REMOVE = 'auth/error/remove';
 export const AUTH_SIGN_OUT = 'auth/signOut';
+export const USER_NEW_DATE = 'user/new/date';
