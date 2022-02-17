@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { ChatListItem } from 'app/screens/ChatScreen/components';
 import { selectors } from 'app/store';
-import { defaultTheme } from 'app/theme/default';
+import { theme } from 'app/theme';
 
 export const ChatList: React.FC = () => {
   const flatList = useRef<FlatList | null>(null);
@@ -27,6 +27,6 @@ export const ChatList: React.FC = () => {
 const styles = StyleSheet.create({
   list: {
     flex: 1,
-    backgroundColor: defaultTheme.whiteLight,
+    backgroundColor: theme.whiteLight,
   },
 });

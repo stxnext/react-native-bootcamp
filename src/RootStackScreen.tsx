@@ -11,11 +11,11 @@ import * as Types from './types';
 const Stack = createStackNavigator<Types.RootStackParams>();
 
 export const RootStackScreen: React.FC = () => {
-  const isLoggedIn = useSelector(selectors.isLoggedIn);
+  const user = useSelector(selectors.getUser);
 
   return (
     <Stack.Navigator>
-      {isLoggedIn ? (
+      {user ? (
         <Stack.Screen
           name={Types.Route.MainTab}
           component={MainTabScreen}

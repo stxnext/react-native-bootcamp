@@ -3,7 +3,7 @@ import { Button, StyleSheet, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import { addMessageToFirestore } from 'app/store/thunk';
-import { defaultTheme } from 'app/theme/default';
+import { theme } from 'app/theme';
 
 export const InputMessage: React.FC = () => {
   const messageInput = useRef<TextInput | null>(null);
@@ -36,7 +36,7 @@ export const InputMessage: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: defaultTheme.grayscale00,
+    backgroundColor: theme.grayscale00,
     margin: 4,
     alignItems: 'center',
     justifyContent: 'center',

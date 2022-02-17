@@ -5,9 +5,4 @@ import * as Types from 'app/types';
 
 export const newMessages = createAction(NEW_MESSAGES, (data: Types.FirebaseDocument[]) => ({
   payload: data,
-  meta: {
-    request: {
-      id: Types.MessagesRequestID.MESSAGES,
-    },
-  },
 }));

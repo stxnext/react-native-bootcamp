@@ -10,11 +10,6 @@ export const initializeWithUser = createAction(
   Constants.AUTH_INITIALIZE_USER,
   (user: Types.FirebaseUser) => ({
     payload: user,
-    meta: {
-      request: {
-        id: Types.RequestID.INITIALIZE_WITH_USER,
-      },
-    },
   }),
 );
 
@@ -22,11 +17,6 @@ export const updateUser = createAction(Constants.AUTH_USER_REQUEST);
 
 export const updateUserSuccess = createAction(Constants.AUTH_USER_SUCCESS, (user: Types.FirebaseUser) => ({
   payload: user,
-  meta: {
-    request: {
-      id: Types.RequestID.USER_UPDATE,
-    },
-  },
 }));
 
 export const updateUserFailure = createAction(Constants.AUTH_USER_FAILURE);
@@ -35,20 +25,10 @@ export const signIn = createAction(Constants.AUTH_SIGN_IN_REQUEST);
 
 export const signInSuccess = createAction(Constants.AUTH_SIGN_IN_SUCCESS, (user: Types.FirebaseUser) => ({
   payload: user,
-  meta: {
-    request: {
-      id: Types.RequestID.SIGN_IN,
-    },
-  },
 }));
 
 export const signInFailure = createAction(Constants.AUTH_SIGN_IN_FAILURE, (error: Types.FirebaseError) => ({
   payload: error,
-  meta: {
-    request: {
-      id: Types.RequestID.SIGN_IN,
-    },
-  },
   error,
 }));
 
@@ -56,20 +36,10 @@ export const signUp = createAction(Constants.AUTH_SIGN_UP_REQUEST);
 
 export const signUpSuccess = createAction(Constants.AUTH_SIGN_UP_SUCCESS, (user: Types.FirebaseUser) => ({
   payload: user,
-  meta: {
-    request: {
-      id: Types.RequestID.SIGN_UP,
-    },
-  },
 }));
 
 export const signUpFailure = createAction(Constants.AUTH_SIGN_UP_FAILURE, (error: Types.FirebaseError) => ({
   payload: error,
-  meta: {
-    request: {
-      id: Types.RequestID.SIGN_UP,
-    },
-  },
   error,
 }));
 

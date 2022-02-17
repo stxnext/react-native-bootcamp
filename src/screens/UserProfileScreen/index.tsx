@@ -6,7 +6,7 @@ import { UserPhoto } from 'app/components/UserPhoto';
 import { UserButton } from 'app/screens/UserProfileScreen/components';
 import { selectors } from 'app/store';
 import { signOutUser, updateUserProfile } from 'app/store/thunk';
-import { defaultTheme } from 'app/theme/default';
+import { theme } from 'app/theme';
 import * as Types from 'app/types';
 
 export type Props = Types.RootStackScreenProps<Types.Route.SignIn>;
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    color: defaultTheme.grayscale09,
+    color: theme.grayscale09,
     margin: 10,
     fontSize: 20,
     padding: 5,

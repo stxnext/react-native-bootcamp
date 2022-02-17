@@ -3,7 +3,6 @@ import { Alert, StyleSheet, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { LogInButton } from 'app/screens/SignInScreen/components';
-import { errorCode } from 'app/services';
 import { actions, selectors } from 'app/store';
 import { signInUser, signUpUser } from 'app/store/thunk';
 import { theme } from 'app/theme';
@@ -20,7 +19,7 @@ export const SignInScreen: React.FC<Props> = () => {
 
   useEffect(() => {
     if (error) {
-      Alert.alert('Error occurred', errorCode(error), [
+      Alert.alert('Error occurred', error.message, [
         {
           text: 'OK',
           onPress: () => dispatch(actions.removeError()),

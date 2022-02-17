@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import { theme } from 'app/theme';
-import { defaultTheme } from 'app/theme/default';
 
 interface Props {
   action: () => void;
@@ -28,6 +27,6 @@ const styles = StyleSheet.create({
     backgroundColor: theme.primaryLight,
   },
   text: {
-    color: defaultTheme.grayscale09,
+    color: theme.grayscale09,
   },
 });
