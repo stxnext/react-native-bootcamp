@@ -1,12 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 
-import { RootStackScreen } from './RootStackScreen';
+import { RootStackNavigator } from './RootStackNavigator';
 
-export const RootNavigator: React.FC = () => {
+export const RootNavigatorContainer: React.FC = () => {
   return (
     <NavigationContainer>
-      <RootStackScreen />
+      <RootStackNavigator />
     </NavigationContainer>
   );
 };
