@@ -14,4 +14,5 @@ export enum AppAction {
   AuthSignUpFailure = 'auth/signUp/failure',
   AuthErrorRemove = 'auth/error/remove',
   AuthSignOut = 'auth/signOut',
+  UserNewDate = 'user/new/date',
 }
