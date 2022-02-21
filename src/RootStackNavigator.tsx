@@ -10,7 +10,7 @@ import * as Types from './types';
 
 const Stack = createStackNavigator<Types.RootStackParams>();
 
-export const RootStackScreen: React.FC = () => {
+export const RootStackNavigator: React.FC = () => {
   const isLoggedIn = useSelector(selectors.isLoggedIn);
 
   return (
