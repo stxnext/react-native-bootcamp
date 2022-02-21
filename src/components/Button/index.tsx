@@ -19,7 +19,7 @@ export const Button: React.FC<Props> = ({ action, title }) => {
 const styles = StyleSheet.create({
   button: {
     width: '50%',
-    height: '5%',
+    padding: 8,
     margin: 4,
     justifyContent: 'center',
     alignItems: 'center',

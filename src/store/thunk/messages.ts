@@ -10,7 +10,7 @@ export const getMessagesFromFirestore: Function = () => {
       .limit(LIMIT_MESSAGES)
       .onSnapshot((querySnapshot: Types.FirebaseDocument) => {
         const data: Types.Message[] = [];
-        querySnapshot.forEach((documentSnapshot: Types.FirebaseDocument) => {
+        querySnapshot?.forEach((documentSnapshot: Types.FirebaseDocument) => {
           data.unshift({
             ...documentSnapshot.data(),
             key: documentSnapshot.id,

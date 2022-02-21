@@ -65,9 +65,8 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '50%',
-    height: '5%',
     margin: 4,
-    padding: 4,
+    padding: 8,
     borderWidth: 1,
     color: theme.grayscale09,
   },
