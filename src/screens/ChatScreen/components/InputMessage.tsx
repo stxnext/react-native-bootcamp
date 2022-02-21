@@ -12,10 +12,9 @@ export const InputMessage: React.FC = () => {
 
   const [messageText, setMessageText] = useState('');
 
-  const onPress = () => {
+  const sendMessage = () => {
     if (messageText) {
       dispatch(addMessageToFirestore(messageText));
-      messageInput.current?.clear();
       setMessageText('');
     }
   };
@@ -27,9 +26,9 @@ export const InputMessage: React.FC = () => {
         style={styles.input}
         value={messageText}
         onChangeText={setMessageText}
-        onSubmitEditing={onPress}
+        onSubmitEditing={sendMessage}
       />
-      <Button title="Wyślij" onPress={onPress} />
+      <Button title="Wyślij" onPress={sendMessage} />
     </View>
   );
 };

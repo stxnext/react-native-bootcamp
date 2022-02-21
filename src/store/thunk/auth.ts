@@ -11,9 +11,9 @@ import { actions, AppDispatch, AppThunk } from 'app/store';
 import * as authActions from 'app/store/actions/auth';
 import * as Types from 'app/types';
 
-export const initializeAuth = (): AppThunk<Promise<void>> => async (dispatch: AppDispatch) => {
+export const initializeAuth = (): AppThunk => (dispatch: AppDispatch) => {
   dispatch(actions.initializeAuth());
-  const user: Types.FirebaseUser | null = await getCurrentUser();
+  const user: Types.FirebaseUser | null = getCurrentUser();
   dispatch(user ? authActions.initializeWithUser(user) : authActions.initializeWithoutUser());
 };
 

@@ -1,8 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { NEW_MESSAGES } from 'app/config/redux';
+import { AppAction } from 'app/store/actions/appAction';
 import * as Types from 'app/types';
 
-export const newMessages = createAction(NEW_MESSAGES, (data: Types.FirebaseDocument[]) => ({
+export const newMessages = createAction(AppAction.NewMessages, (data: Types.Message[]) => ({
   payload: data,
 }));

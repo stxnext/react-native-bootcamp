@@ -3,7 +3,7 @@ import { StyleSheet, KeyboardAvoidingView, SafeAreaView, Platform } from 'react-
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 
-import { ChatList, InputMessage } from 'app/screens/ChatScreen/components';
+import { MessageList, InputMessage } from 'app/screens/ChatScreen/components';
 import { getMessagesFromFirestore } from 'app/store/thunk';
 import * as Types from 'app/types';
 
@@ -29,7 +29,7 @@ export const ChatScreen: React.FC<Props> = () => {
         style={styles.container}
         keyboardVerticalOffset={keyboardVerticalOffset + insets.bottom}
       >
-        <ChatList />
+        <MessageList />
         <InputMessage />
       </KeyboardAvoidingView>
     </SafeAreaView>

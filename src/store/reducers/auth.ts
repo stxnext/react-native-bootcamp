@@ -7,7 +7,7 @@ import * as authActions from '../actions/auth';
 export interface AuthState {
   isLoading: boolean;
   user: Types.FirebaseUser | null;
-  error: Types.FirebaseError | null;
+  error: string | null;
 }
 
 export const initialState: AuthState = {
@@ -53,7 +53,7 @@ export const authReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(authActions.signInFailure, (state, action) => {
     state.isLoading = false;
-    state.error = action.error;
+    state.error = action.payload.message;
   });
 
   builder.addCase(authActions.signUp, (state) => {
@@ -68,7 +68,7 @@ export const authReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(authActions.signUpFailure, (state, action) => {
     state.isLoading = false;
-    state.error = action.error;
+    state.error = action.payload.message;
   });
 
   builder.addCase(authActions.signOut, (state) => {

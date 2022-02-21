@@ -13,7 +13,7 @@ export type FirebaseCollectionReference = FirebaseFirestoreTypes.CollectionRefer
 
 export type FirebaseFieldValue = FirebaseFirestoreTypes.FieldValue;
 
-export interface FirebaseMessage {
+export interface Message {
   text: string;
   createdAt: FirebaseFieldValue;
   email: string | null;

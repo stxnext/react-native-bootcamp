@@ -5,16 +5,16 @@ import { UserPhoto } from 'app/components';
 import * as Types from 'app/types';
 
 interface Props {
-  item: Types.FirebaseDocument;
+  message: Types.Message;
 }
 
-export const ChatListItem: React.FC<Props> = ({ item }) => {
+export const MessageListItem: React.FC<Props> = ({ message: { photoUrl, email, text } }) => {
   return (
     <View style={styles.listItem}>
-      <UserPhoto imageURL={item.photoUrl} size={75} />
+      <UserPhoto imageURL={photoUrl} size={75} />
       <View>
-        <Text>User: {item.email}</Text>
-        <Text>Message: {item.text}</Text>
+        <Text>User: {email}</Text>
+        <Text>Message: {text}</Text>
       </View>
     </View>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Alert, StyleSheet, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { LogInButton } from 'app/screens/SignInScreen/components';
+import { Button } from 'app/components/Button';
 import { actions, selectors } from 'app/store';
 import { signInUser, signUpUser } from 'app/store/thunk';
 import { theme } from 'app/theme';
@@ -19,7 +19,7 @@ export const SignInScreen: React.FC<Props> = () => {
 
   useEffect(() => {
     if (error) {
-      Alert.alert('Error occurred', error.message, [
+      Alert.alert('Error occurred', error, [
         {
           text: 'OK',
           onPress: () => dispatch(actions.removeError()),
@@ -51,8 +51,8 @@ export const SignInScreen: React.FC<Props> = () => {
         autoCapitalize="none"
         onChangeText={onChangePassword}
       />
-      <LogInButton action={() => dispatch(signInUser(email, password))} title="SignIn" />
-      <LogInButton action={() => dispatch(signUpUser(email, password))} title="SignUp" />
+      <Button action={() => dispatch(signInUser(email, password))} title="SignIn" />
+      <Button action={() => dispatch(signUpUser(email, password))} title="SignUp" />
     </View>
   );
 };
@@ -64,10 +64,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   input: {
-    width: 200,
-    height: 40,
-    margin: 10,
-    padding: 10,
+    width: '50%',
+    height: '5%',
+    margin: 4,
+    padding: 4,
     borderWidth: 1,
     color: theme.grayscale09,
   },

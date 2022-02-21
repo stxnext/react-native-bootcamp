@@ -4,7 +4,7 @@ import * as messagesActions from 'app/store/actions/messages';
 import * as Types from 'app/types';
 
 export interface MessagesState {
-  messages: Types.FirebaseDocument[];
+  messages: Types.Message[];
 }
 
 export const initialState: MessagesState = {

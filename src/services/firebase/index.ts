@@ -1,3 +1,3 @@
 export * from './auth';
-export * from './cloudStore';
+export * from './cloudStorage';
 export * from './messages';

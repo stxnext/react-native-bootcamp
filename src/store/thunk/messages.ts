@@ -9,7 +9,7 @@ export const getMessagesFromFirestore: Function = () => {
       .orderBy(SORT_BY_MESSAGES, SORT_DIRECTION_MESSAGES)
       .limit(LIMIT_MESSAGES)
       .onSnapshot((querySnapshot: Types.FirebaseDocument) => {
-        const data: Types.FirebaseDocument[] = [];
+        const data: Types.Message[] = [];
         querySnapshot.forEach((documentSnapshot: Types.FirebaseDocument) => {
           data.unshift({
             ...documentSnapshot.data(),
@@ -27,13 +27,12 @@ export const addMessageToFirestore =
     try {
       const user: Types.FirebaseUser | null = getCurrentUser();
       if (user) {
-        const message: Types.FirebaseMessage = {
+        addNewMessage({
           text,
           createdAt: getFirebaseTimeStamp(),
           email: user.email,
           photoUrl: user.photoURL,
-        };
-        addNewMessage(message);
+        });
       }
     } catch (error) {
       // handle error
