@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
+import { Platform } from 'react-native';
 
 import { BottomTabBarIcon } from 'app/components';
 import { UserProfileScreen, ChatScreen } from 'app/screens';
@@ -10,7 +11,12 @@ const Tab = createBottomTabNavigator<Types.MainTabParams>();
 
 export const MainTabScreen = () => {
   return (
-    <Tab.Navigator initialRouteName={Types.Route.UserProfile}>
+    <Tab.Navigator
+      initialRouteName={Types.Route.UserProfile}
+      screenOptions={{
+        tabBarHideOnKeyboard: Platform.OS !== 'ios',
+      }}
+    >
       <Tab.Screen
         name={Types.Route.UserProfile}
         component={UserProfileScreen}
