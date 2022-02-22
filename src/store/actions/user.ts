@@ -1,7 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { AppAction } from 'app/store/actions/appAction';
+enum Action {
+  UserNewDate = 'user/new/date',
+}
 
-export const updateLastActiveDate = createAction(AppAction.UserNewDate, (data: string) => ({
+export const updateLastActiveDate = createAction(Action.UserNewDate, (data: string) => ({
   payload: data,
 }));

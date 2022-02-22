@@ -1,8 +1,11 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { AppAction } from 'app/store/actions/appAction';
 import * as Types from 'app/types';
 
-export const newMessages = createAction(AppAction.NewMessages, (data: Types.Message[]) => ({
+enum Action {
+  NewMessages = 'messages/newMessages',
+}
+
+export const newMessages = createAction(Action.NewMessages, (data: Types.Message[]) => ({
   payload: data,
 }));

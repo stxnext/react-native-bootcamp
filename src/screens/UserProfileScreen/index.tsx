@@ -17,8 +17,10 @@ export const UserProfileScreen: React.FC<Props> = () => {
 
   return (
     <View style={styles.container}>
-      <UserPhoto imageURL={user?.photoURL} />
-      <Text style={styles.text}>{user?.email}</Text>
+      <View style={styles.photoContainer}>
+        <UserPhoto imageURL={user?.photoURL} />
+        <Text style={styles.text}>{user?.email}</Text>
+      </View>
       <Button title="changePhoto" action={() => dispatch(updateUserProfile())} />
       <Button title="SignOut" action={() => dispatch(signOutUser())} />
     </View>
@@ -28,6 +30,10 @@ export const UserProfileScreen: React.FC<Props> = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+  },
+  photoContainer: {
+    alignSelf: 'center',
     alignItems: 'center',
   },
   text: {

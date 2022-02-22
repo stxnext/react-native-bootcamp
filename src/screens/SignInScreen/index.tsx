@@ -60,13 +60,13 @@ export const SignInScreen: React.FC<Props> = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
   },
   input: {
-    width: '50%',
-    margin: 4,
-    padding: 8,
+    fontSize: 16,
+    marginVertical: 4,
+    marginHorizontal: 36,
+    padding: 16,
     borderWidth: 1,
     color: theme.grayscale09,
   },

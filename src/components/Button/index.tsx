@@ -18,9 +18,9 @@ export const Button: React.FC<Props> = ({ action, title }) => {
 
 const styles = StyleSheet.create({
   button: {
-    width: '50%',
-    padding: 8,
-    margin: 4,
+    padding: 16,
+    marginVertical: 4,
+    marginHorizontal: 36,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.primaryLight,
