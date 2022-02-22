@@ -2,14 +2,13 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import { theme } from 'app/theme';
-import { defaultTheme } from 'app/theme/default';
 
 interface Props {
   action: () => void;
   title: string;
 }
 
-export const LogInButton: React.FC<Props> = ({ action, title }) => {
+export const Button: React.FC<Props> = ({ action, title }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={action}>
       <Text style={styles.text}>{title}</Text>
@@ -19,15 +18,14 @@ export const LogInButton: React.FC<Props> = ({ action, title }) => {
 
 const styles = StyleSheet.create({
   button: {
-    width: 200,
-    height: 40,
-    margin: 10,
-    padding: 10,
+    padding: 16,
+    marginVertical: 4,
+    marginHorizontal: 36,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.primaryLight,
   },
   text: {
-    color: defaultTheme.grayscale09,
+    color: theme.grayscale09,
   },
 });

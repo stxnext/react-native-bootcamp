@@ -11,7 +11,7 @@ import * as Types from './types';
 const Stack = createStackNavigator<Types.RootStackParams>();
 
 export const RootStackNavigator: React.FC = () => {
-  const isLoggedIn = useSelector(selectors.isLoggedIn);
+  const isLoggedIn = !!useSelector(selectors.getUser);
 
   return (
     <Stack.Navigator>

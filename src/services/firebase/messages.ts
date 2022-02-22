@@ -1,11 +1,12 @@
 import firestore from '@react-native-firebase/firestore';
 
-import { CHANEL_ID } from 'app/config/firebase';
+import { CHAT_ID } from 'app/config/firebase';
 import * as Types from 'app/types';
 
-export const getMessages: () => Types.FirebaseCollectionReference = () => firestore().collection(CHANEL_ID);
+export const getMessages: () => Types.FirebaseCollectionReference = () =>
+  firestore().collection(`chats/${CHAT_ID}/messages`);
 
-export const addNewMessage: (message: Types.FirebaseMessage) => Promise<Types.FirebaseDocumentReference> = (
+export const addNewMessage: (message: Types.Message) => Promise<Types.FirebaseDocumentReference> = (
   message,
 ) => getMessages().add(message);
 

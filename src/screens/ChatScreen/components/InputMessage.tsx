@@ -3,7 +3,7 @@ import { Button, StyleSheet, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import { addMessageToFirestore } from 'app/store/thunk';
-import { defaultTheme } from 'app/theme/default';
+import { theme } from 'app/theme';
 
 export const InputMessage: React.FC = () => {
   const messageInput = useRef<TextInput | null>(null);
@@ -12,10 +12,9 @@ export const InputMessage: React.FC = () => {
 
   const [messageText, setMessageText] = useState('');
 
-  const onPress = () => {
+  const sendMessage = () => {
     if (messageText) {
       dispatch(addMessageToFirestore(messageText));
-      messageInput.current?.clear();
       setMessageText('');
     }
   };
@@ -27,16 +26,16 @@ export const InputMessage: React.FC = () => {
         style={styles.input}
         value={messageText}
         onChangeText={setMessageText}
-        onSubmitEditing={onPress}
+        onSubmitEditing={sendMessage}
       />
-      <Button title="Wyślij" onPress={onPress} />
+      <Button title="Wyślij" onPress={sendMessage} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: defaultTheme.grayscale00,
+    backgroundColor: theme.grayscale00,
     margin: 4,
     alignItems: 'center',
     justifyContent: 'center',

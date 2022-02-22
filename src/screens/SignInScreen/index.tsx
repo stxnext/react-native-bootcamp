@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Alert, StyleSheet, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { LogInButton } from 'app/screens/SignInScreen/components';
-import { errorCode } from 'app/services';
+import { Button } from 'app/components/Button';
 import { actions, selectors } from 'app/store';
 import { signInUser, signUpUser } from 'app/store/thunk';
 import { theme } from 'app/theme';
@@ -20,7 +19,7 @@ export const SignInScreen: React.FC<Props> = () => {
 
   useEffect(() => {
     if (error) {
-      Alert.alert('Error occurred', errorCode(error), [
+      Alert.alert('Error occurred', error, [
         {
           text: 'OK',
           onPress: () => dispatch(actions.removeError()),
@@ -52,8 +51,8 @@ export const SignInScreen: React.FC<Props> = () => {
         autoCapitalize="none"
         onChangeText={onChangePassword}
       />
-      <LogInButton action={() => dispatch(signInUser(email, password))} title="SignIn" />
-      <LogInButton action={() => dispatch(signUpUser(email, password))} title="SignUp" />
+      <Button action={() => dispatch(signInUser(email, password))} title="SignIn" />
+      <Button action={() => dispatch(signUpUser(email, password))} title="SignUp" />
     </View>
   );
 };
@@ -61,14 +60,13 @@ export const SignInScreen: React.FC<Props> = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
   },
   input: {
-    width: 200,
-    height: 40,
-    margin: 10,
-    padding: 10,
+    fontSize: 16,
+    marginVertical: 4,
+    marginHorizontal: 36,
+    padding: 16,
     borderWidth: 1,
     color: theme.grayscale09,
   },

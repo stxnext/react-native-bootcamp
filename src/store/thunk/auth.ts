@@ -1,5 +1,4 @@
 import {
-  EmptyInputError,
   getCurrentUser,
   openImageLibrary,
   signIn,
@@ -12,14 +11,10 @@ import { actions, AppDispatch, AppThunk } from 'app/store';
 import * as authActions from 'app/store/actions/auth';
 import * as Types from 'app/types';
 
-export const initializeAuth = (): AppThunk<Promise<void>> => async (dispatch: AppDispatch) => {
+export const initializeAuth = (): AppThunk => (dispatch: AppDispatch) => {
   dispatch(actions.initializeAuth());
-  try {
-    const user: Types.FirebaseUser | null = await getCurrentUser();
-    dispatch(user ? authActions.initializeWithUser(user) : authActions.initializeWithoutUser());
-  } catch (error) {
-    // handle error
-  }
+  const user: Types.FirebaseUser | null = getCurrentUser();
+  dispatch(user ? authActions.initializeWithUser(user) : authActions.initializeWithoutUser());
 };
 
 export const signInUser =
@@ -27,12 +22,8 @@ export const signInUser =
   async (dispatch: AppDispatch) => {
     dispatch(actions.signIn());
     try {
-      if (username && password) {
-        const user: Types.FirebaseUser = await signIn(username, password);
-        dispatch(authActions.signInSuccess(user));
-      } else {
-        dispatch(authActions.signInFailure(EmptyInputError));
-      }
+      const user: Types.FirebaseUser = await signIn(username, password);
+      dispatch(authActions.signInSuccess(user));
     } catch (error) {
       dispatch(authActions.signInFailure(error as Types.FirebaseError));
     }
@@ -43,12 +34,8 @@ export const signUpUser =
   async (dispatch: AppDispatch) => {
     dispatch(actions.signUp());
     try {
-      if (username && password) {
-        const user: Types.FirebaseUser = await signUp(username, password);
-        dispatch(authActions.signUpSuccess(user));
-      } else {
-        dispatch(authActions.signUpFailure(EmptyInputError));
-      }
+      const user: Types.FirebaseUser = await signUp(username, password);
+      dispatch(authActions.signUpSuccess(user));
     } catch (error) {
       dispatch(authActions.signUpFailure(error as Types.FirebaseError));
     }
@@ -56,12 +43,8 @@ export const signUpUser =
 
 export const signOutUser = (): AppThunk<Promise<void>> => async (dispatch: AppDispatch) => {
   dispatch(actions.signOut());
-  try {
-    await singOut();
-    dispatch(authActions.signOut());
-  } catch (error) {
-    // handle error
-  }
+  await singOut();
+  dispatch(authActions.signOut());
 };
 
 export const updateUserProfile = (): AppThunk<Promise<void>> => async (dispatch: AppDispatch) => {
