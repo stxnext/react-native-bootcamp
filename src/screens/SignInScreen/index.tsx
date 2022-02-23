@@ -1,7 +1,10 @@
-import React, { useRef, useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Alert, StyleSheet, TextInput, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from 'app/components';
+import { actions, selectors } from 'app/store';
+import { signInUser, signUpUser } from 'app/store/thunk';
 import { theme } from 'app/theme';
 import * as Types from 'app/types';
 
@@ -11,6 +14,23 @@ export const SignInScreen: React.FC<Props> = () => {
   const passwordInput = useRef<TextInput | null>(null);
   const [email, onChangeEmail] = useState<string>('');
   const [password, onChangePassword] = useState<string>('');
+  const dispatch = useDispatch();
+  const user = useSelector(selectors.getUser);
+  const error = useSelector(selectors.getError);
+
+  useEffect(() => {
+    if (error) {
+      Alert.alert('Error occurred', error, [
+        {
+          text: 'OK',
+          onPress: () => dispatch(actions.removeError()),
+        },
+      ]);
+    }
+    if (user) {
+      Alert.alert('User Logged in', 'email:' + user.email);
+    }
+  }, [dispatch, user, error]);
 
   return (
     <View style={styles.container}>
@@ -35,8 +55,8 @@ export const SignInScreen: React.FC<Props> = () => {
         autoCapitalize="none"
         onChangeText={onChangePassword}
       />
-      <Button onPress={() => null} title="SignIn" />
-      <Button onPress={() => null} title="SignUp" />
+      <Button onPress={() => email && password && dispatch(signInUser(email, password))} title="SignIn" />
+      <Button onPress={() => email && password && dispatch(signUpUser(email, password))} title="SignUp" />
     </View>
   );
 };

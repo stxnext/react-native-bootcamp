@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "616674646888",
+    "project_id": "react-native-bootcamp-stx",
+    "storage_bucket": "react-native-bootcamp-stx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616674646888:android:8c794ad7f7198dce51d4dd",
+        "android_client_info": {
+          "package_name": "com.bootcamp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616674646888-3i83lb8kujnja3bjfs068l4t5g13t46s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA0A6Wj9X790A6r7NQU1t5aqZ6UP4hjaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616674646888-3i83lb8kujnja3bjfs068l4t5g13t46s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
