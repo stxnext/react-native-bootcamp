@@ -15,7 +15,6 @@ export const SignInScreen: React.FC<Props> = () => {
   const [email, onChangeEmail] = useState<string>('');
   const [password, onChangePassword] = useState<string>('');
   const dispatch = useDispatch();
-  const user = useSelector(selectors.getUser);
   const error = useSelector(selectors.getError);
 
   useEffect(() => {
@@ -27,10 +26,7 @@ export const SignInScreen: React.FC<Props> = () => {
         },
       ]);
     }
-    if (user) {
-      Alert.alert('User Logged in', 'email:' + user.email);
-    }
-  }, [dispatch, user, error]);
+  }, [dispatch, error]);
 
   return (
     <View style={styles.container}>

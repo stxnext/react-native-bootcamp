@@ -11,12 +11,23 @@ export interface AuthState {
 }
 
 export const initialState: AuthState = {
-  isLoading: false,
+  isLoading: true,
   user: null,
   error: null,
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
+  builder.addCase(authActions.initializeWithUser, (state, action) => {
+    state.user = action.payload;
+    state.isLoading = false;
+    state.error = null;
+  });
+
+  builder.addCase(authActions.initializeWithoutUser, (state) => {
+    state.isLoading = false;
+    state.error = null;
+  });
+
   builder.addCase(authActions.signIn, (state) => {
     state.isLoading = true;
   });
@@ -46,6 +57,12 @@ export const authReducer = createReducer(initialState, (builder) => {
     state.isLoading = false;
     state.error = action.payload.message;
   });
+
+  builder.addCase(authActions.signOut, (state) => {
+    state.user = initialState.user;
+    state.error = null;
+  });
+
   builder.addCase(authActions.removeError, (state) => {
     state.error = null;
   });

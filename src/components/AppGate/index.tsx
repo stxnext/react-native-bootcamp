@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ActivityIndicator, Modal, StyleSheet, View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { selectors } from 'app/store';
+import { initializeAuth } from 'app/store/thunk';
 import { theme } from 'app/theme';
 
 export const AppGate: React.FC = ({ children }) => {
+  const dispatch = useDispatch();
   const isLoading = useSelector(selectors.isLoading);
+
+  useEffect(() => {
+    dispatch(initializeAuth());
+  }, [dispatch]);
 
   return (
     <>

@@ -1,7 +1,13 @@
-import { signIn, signUp } from 'app/services';
+import { getCurrentUser, signIn, signUp, singOut } from 'app/services';
 import { actions, AppDispatch, AppThunk } from 'app/store';
 import * as authActions from 'app/store/actions/auth';
 import * as Types from 'app/types';
+
+export const initializeAuth = (): AppThunk => (dispatch: AppDispatch) => {
+  dispatch(actions.initializeAuth());
+  const user: Types.FirebaseUser | null = getCurrentUser();
+  dispatch(user ? authActions.initializeWithUser(user) : authActions.initializeWithoutUser());
+};
 
 export const signInUser =
   (username: string, password: string): AppThunk<Promise<void>> =>
@@ -26,3 +32,9 @@ export const signUpUser =
       dispatch(authActions.signUpFailure(error as Types.FirebaseError));
     }
   };
+
+export const signOutUser = (): AppThunk<Promise<void>> => async (dispatch: AppDispatch) => {
+  dispatch(actions.signOut());
+  await singOut();
+  dispatch(authActions.signOut());
+};

@@ -23,3 +23,7 @@ export const signUp: (email: string, password: string) => Promise<Types.Firebase
     .catch((error) => {
       throw error;
     });
+
+export const singOut: () => Promise<void> = async () => await auth().signOut();
+
+export const getCurrentUser: () => Types.FirebaseUser | null = () => auth().currentUser;

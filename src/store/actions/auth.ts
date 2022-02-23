@@ -4,6 +4,8 @@ import * as Types from 'app/types';
 
 enum Action {
   AuthInitializeStart = 'auth/initialize/start',
+  AuthInitializeNoUser = 'auth/initialize/noUser',
+  AuthInitializeUser = 'auth/initialize/user',
   AuthSignInRequest = 'auth/signIn/request',
   AuthSignInSuccess = 'auth/signIn/success',
   AuthSignInFailure = 'auth/signIn/failure',
@@ -11,7 +13,16 @@ enum Action {
   AuthSignUpSuccess = 'auth/signUp/success',
   AuthSignUpFailure = 'auth/signUp/failure',
   AuthErrorRemove = 'auth/error/remove',
+  AuthSignOut = 'auth/signOut',
 }
+
+export const initializeAuth = createAction(Action.AuthInitializeStart);
+
+export const initializeWithoutUser = createAction(Action.AuthInitializeNoUser);
+
+export const initializeWithUser = createAction(Action.AuthInitializeUser, (user: Types.FirebaseUser) => ({
+  payload: user,
+}));
 
 export const signIn = createAction(Action.AuthSignInRequest);
 
@@ -34,3 +45,5 @@ export const signUpFailure = createAction(Action.AuthSignUpFailure, (error: Type
 }));
 
 export const removeError = createAction(Action.AuthErrorRemove);
+
+export const signOut = createAction(Action.AuthSignOut);
