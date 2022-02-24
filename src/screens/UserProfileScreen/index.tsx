@@ -3,8 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from 'app/components/Button';
+import { UserPhoto } from 'app/components/UserPhoto';
 import { selectors } from 'app/store';
-import { signOutUser } from 'app/store/thunk';
+import { signOutUser, updateUserProfile } from 'app/store/thunk';
 import { theme } from 'app/theme';
 import * as Types from 'app/types';
 
@@ -17,8 +18,10 @@ export const UserProfileScreen: React.FC<Props> = () => {
   return (
     <View style={styles.container}>
       <View style={styles.photoContainer}>
+        <UserPhoto imageURL={user?.photoURL} />
         <Text style={styles.text}>{user?.email}</Text>
       </View>
+      <Button title="changePhoto" onPress={() => dispatch(updateUserProfile())} />
       <Button title="SignOut" onPress={() => dispatch(signOutUser())} />
     </View>
   );

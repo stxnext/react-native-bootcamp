@@ -1,4 +1,12 @@
-import { getCurrentUser, signIn, signUp, singOut } from 'app/services';
+import {
+  getCurrentUser,
+  openImageLibrary,
+  signIn,
+  signUp,
+  singOut,
+  updateUserPhoto,
+  uploadFile,
+} from 'app/services';
 import { actions, AppDispatch, AppThunk } from 'app/store';
 import * as authActions from 'app/store/actions/auth';
 import * as Types from 'app/types';
@@ -37,4 +45,16 @@ export const signOutUser = (): AppThunk<Promise<void>> => async (dispatch: AppDi
   dispatch(actions.signOut());
   await singOut();
   dispatch(authActions.signOut());
+};
+export const updateUserProfile = (): AppThunk<Promise<void>> => async (dispatch: AppDispatch) => {
+  dispatch(actions.updateUser());
+  try {
+    const imgUri: string = await openImageLibrary();
+    const uri: string = await uploadFile(imgUri);
+    await updateUserPhoto(uri);
+    const user: Types.FirebaseUser | null = await getCurrentUser();
+    dispatch(user ? authActions.updateUserSuccess(user) : authActions.updateUserFailure());
+  } catch (error) {
+    dispatch(authActions.updateUserFailure());
+  }
 };

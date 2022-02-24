@@ -27,3 +27,10 @@ export const signUp: (email: string, password: string) => Promise<Types.Firebase
 export const singOut: () => Promise<void> = async () => await auth().signOut();
 
 export const getCurrentUser: () => Types.FirebaseUser | null = () => auth().currentUser;
+
+export const updateUserPhoto: (uri: string) => Promise<void> = async (uri) => {
+  const userInfo = {
+    photoURL: uri,
+  };
+  await auth().currentUser?.updateProfile(userInfo);
+};

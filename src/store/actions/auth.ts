@@ -6,6 +6,9 @@ enum Action {
   AuthInitializeStart = 'auth/initialize/start',
   AuthInitializeNoUser = 'auth/initialize/noUser',
   AuthInitializeUser = 'auth/initialize/user',
+  AuthUserRequest = 'auth/user/request',
+  AuthUserSuccess = 'auth/user/success',
+  AuthUserFailure = 'auth/user/failure',
   AuthSignInRequest = 'auth/signIn/request',
   AuthSignInSuccess = 'auth/signIn/success',
   AuthSignInFailure = 'auth/signIn/failure',
@@ -23,6 +26,14 @@ export const initializeWithoutUser = createAction(Action.AuthInitializeNoUser);
 export const initializeWithUser = createAction(Action.AuthInitializeUser, (user: Types.FirebaseUser) => ({
   payload: user,
 }));
+
+export const updateUser = createAction(Action.AuthUserRequest);
+
+export const updateUserSuccess = createAction(Action.AuthUserSuccess, (user: Types.FirebaseUser) => ({
+  payload: user,
+}));
+
+export const updateUserFailure = createAction(Action.AuthUserFailure);
 
 export const signIn = createAction(Action.AuthSignInRequest);
 

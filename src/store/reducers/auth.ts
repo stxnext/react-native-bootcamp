@@ -28,6 +28,19 @@ export const authReducer = createReducer(initialState, (builder) => {
     state.error = null;
   });
 
+  builder.addCase(authActions.updateUser, (state) => {
+    state.isLoading = true;
+  });
+
+  builder.addCase(authActions.updateUserSuccess, (state, action) => {
+    state.user = action.payload;
+    state.isLoading = false;
+  });
+
+  builder.addCase(authActions.updateUserFailure, (state) => {
+    state.isLoading = false;
+  });
+
   builder.addCase(authActions.signIn, (state) => {
     state.isLoading = true;
   });
