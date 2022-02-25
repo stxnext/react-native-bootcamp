@@ -9,7 +9,7 @@ import { signOutUser, updateUserProfile } from 'app/store/thunk';
 import { theme } from 'app/theme';
 import * as Types from 'app/types';
 
-export type Props = Types.RootStackScreenProps<Types.Route.SignIn>;
+export type Props = Types.RootStackScreenBottomTabProps<Types.Route.UserProfile>;
 
 export const UserProfileScreen: React.FC<Props> = () => {
   const user = useSelector(selectors.getUser);
