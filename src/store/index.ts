@@ -3,6 +3,8 @@ import { AnyAction } from 'redux';
 import createDebugger from 'redux-flipper';
 import thunk, { ThunkAction } from 'redux-thunk';
 
+import { messagesReducer } from 'app/store/reducers/messages';
+
 import * as actions from './actions';
 import { authReducer } from './reducers';
 import * as selectors from './selectors';
@@ -15,6 +17,7 @@ if (__DEV__) {
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  messsages: messagesReducer,
 });
 
 const store = configureStore({
