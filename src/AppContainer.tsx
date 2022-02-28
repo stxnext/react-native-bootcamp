@@ -5,15 +5,18 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppGate } from 'app/components/AppGate';
 
 import { RootNavigatorContainer } from './RootNavigatorContainer';
+import { SaveActiveAppState } from './SaveActiveAppState';
 
 const AppContainer = () => {
   return (
-    <AppGate>
-      <SafeAreaProvider>
-        <StatusBar backgroundColor="transparent" />
-        <RootNavigatorContainer />
-      </SafeAreaProvider>
-    </AppGate>
+    <SaveActiveAppState>
+      <AppGate>
+        <SafeAreaProvider>
+          <StatusBar backgroundColor="transparent" />
+          <RootNavigatorContainer />
+        </SafeAreaProvider>
+      </AppGate>
+    </SaveActiveAppState>
   );
 };
 
