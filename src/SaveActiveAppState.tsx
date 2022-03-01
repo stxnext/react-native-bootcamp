@@ -1,44 +1,44 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { Alert, AppState } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { actions, selectors } from 'app/store';
+
+const change = 'change';
+const active = 'active';
+const inactive = 'inactive';
+const background = 'background';
+const alertTitle = 'Last time app was active on ';
 
 export const SaveActiveAppState: React.FC = ({ children }) => {
   const appState = useRef(AppState.currentState);
+  const dispatch = useDispatch();
+  const lastActiveDate = useSelector(selectors.getLastActiveDate);
 
-  useEffect(() => {
-    const subscription = AppState.addEventListener('change', (nextAppState) => {
+  const matchState = (state: string) => appState?.current.match(state);
+
+  const appStateListener = useCallback(() => {
+    return AppState.addEventListener(change, (nextAppState) => {
       if (
-        (appState.current.match(/active/) && nextAppState === 'inactive') ||
-        (appState.current.match(/active/) && nextAppState === 'background')
+        (matchState(active) && nextAppState === inactive) ||
+        (matchState(active) && nextAppState === background)
       ) {
-        setAppLastActiveDateHandler();
+        const dateNow = new Date().toLocaleString();
+        dispatch(actions.updateLastActiveDate(dateNow));
       }
-      if (appState.current.match(/inactive|background/) && nextAppState === 'active') {
-        getAppLastActiveDateHandler();
+      if ((matchState(background) || matchState(inactive)) && nextAppState === active) {
+        Alert.alert(alertTitle + lastActiveDate);
       }
       appState.current = nextAppState;
     });
+  }, [dispatch, lastActiveDate]);
+
+  useEffect(() => {
+    const subscription = appStateListener();
     return () => {
       subscription.remove();
     };
-  }, []);
-
-  const getAppLastActiveDateHandler = async () => {
-    try {
-      const appLastActiveDate = await AsyncStorage.getItem('@app_last_active_date');
-      Alert.alert(('Last time app was active on ' + appLastActiveDate) as string);
-    } catch (error) {
-      console.log('ASYNC_STORAGE_GET_ITEM_EROR', error);
-    }
-  };
-
-  const setAppLastActiveDateHandler = async () => {
-    try {
-      await AsyncStorage.setItem('@app_last_active_date', new Date().toLocaleString());
-    } catch (error) {
-      console.log('ASYNC_STORAGE_SET_ITEM_EROR', error);
-    }
-  };
+  }, [appStateListener, lastActiveDate]);
 
   return <>{children}</>;
 };
